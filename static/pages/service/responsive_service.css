@@ -1,0 +1,96 @@
+@media only screen and (max-width: 1300px){
+
+
+
+}
+@media only screen and (max-width: 1200px){
+  .grid-3{
+    grid-template-columns: auto auto;
+  }
+}
+
+@media only screen and (max-width: 1150px){
+
+
+
+}
+@media only screen and (max-width: 1050px){
+
+
+
+}
+@media only screen and (max-width: 1000px){
+
+
+
+}
+
+
+
+@media only screen and (max-width: 900px){
+
+  .medium{
+    font-size: 30px;
+  }
+}
+@media only screen and (max-width: 800px){
+  .grid-3{
+    grid-template-columns: auto ;
+  }
+  .titled-paragraph{
+    width: calc(100% - 20px) ;
+    padding: 15px 10px;
+  }
+
+  .medium{
+    font-size: 30px;
+  }
+  .intra-bg{
+    background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.8)), url("intra_responsive.jpg") ;
+    background-image: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.8)), url("intra_responsive.jpg");
+  }
+  .inter-bg{
+    background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.8)), url("inter_responsive.jpg") ;
+    background-image: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.8)), url("inter_responsive.jpg");
+  }
+  .consult-bg{
+    background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.8)), url("consult_responsive.jpg") ;
+    background-image: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.8)), url("consult_responsive.jpg");
+  }
+  .bg-sized-container{
+    background-size: none;
+  }
+
+}
+
+@media only screen and (max-width: 550px){
+
+
+  .card-5{
+    width: calc(100% - 20px);
+  }
+
+
+
+  .card-modern-2  .part-2 > h2{
+    font-size: 16px;
+  }
+  .card-5 .details h3{
+    font-size: 16px;
+  }
+  .medium{
+    font-size: 20px;
+  }
+
+  .strong{
+    font-size: 35px;
+  }
+  .btn{
+    width: max-content;
+    font-size: 14px;
+    padding: 10px 10px;
+  }
+}
+@media only screen and (max-width: 320px){
+
+}

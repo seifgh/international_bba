@@ -1,0 +1,183 @@
+{% extends 'base.html' %} {% load static %} {% block title %} Trainings
+{%endblock %} {% block styles %}
+
+<link rel="stylesheet" href="{% static 'pages/trainings/trainings.css'%}" />
+<link
+  rel="stylesheet"
+  href="{% static 'pages/trainings/responsive_trainings.css'%}"
+/>
+{% endblock %} {% block scripts %}
+<script
+  src="{% static 'pages/trainings/trainings.js' %}"
+  charset="utf-8"
+></script>
+
+{% endblock %} {% block content %}
+<section class="sized-container">
+  <center>
+    <img
+      class="small-image"
+      src="{% static 'pages/trainings/training.svg' %}"
+    />
+    <h1 class="strong white upper">Formations ( {{ count }} )</h1>
+  </center>
+</section>
+<section>
+  <div id="parent-scroller" class="medium-margin">
+    <div class="max-flex">
+      <div class="lefted">
+        <h2>Modules</h2>
+      </div>
+      <div class="righted">
+        <i id="scroll-left" class="icon-left btn-icon left"></i>
+        <i id="scroll-right" class="icon-right btn-icon right"></i>
+      </div>
+    </div>
+
+    <div class="scrolled-container">
+      <div id="scroller" class="container">
+        {% for i in modules %}
+        <a href="/module/{{i.slug}}" class="small-card">
+          <div class="img-side"><img src="{{ i.formated_logo }}" /></div>
+          <b>{{i.title}}</b>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="form-container">
+    <h3 id="flf-toggler" class="icon-">Filtrer les données</h3>
+    <form class="form-filter">
+      <input
+        id="tsi"
+        placeholder="Nom de formation"
+        type="text"
+        name="search_word"
+        value="{{search_word}}"
+      />
+      <div class="grid-2">
+        <div>
+          <b>de ( date debut )</b>
+          <input value="{{date_from}}" name="date_from" type="date" />
+        </div>
+        <div>
+          <b>à ( date fin )</b>
+          <input value="{{date_to}}" name="date_to" type="date" />
+        </div>
+      </div>
+      <br />
+      <button class="btn">Filtrer</button>
+    </form>
+  </div>
+  <br /><br />
+  {% if objects %}
+  <center>
+    <div class="grid-4">
+      {% for i in objects %}
+      <a href="/training/{{i.slug}}" class="article-1">
+        <div class="image-side">
+          <img src="{{i.formated_image}}" />
+        </div>
+        <div class="details">
+          {% with formated_date=i.formated_date.date %}
+          <h3 class="date icon-">
+            Du {{formated_date.start_date|date:"d / m"}} à
+            {{formated_date.end_date|date:"d / m"}}
+          </h3>
+          {% endwith %}
+          <b>{{i.title}}</b>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% if num_pages > 1 %} {% if num_pages < 6 %}
+    <div class="paginator">
+      {% if has_previous.bool is True %}
+      <a
+        href="/trainings?page={{has_previous.page}}&search_word={{search_word}}&date_from={{date_from}}&date_to={{date_to}}"
+      >
+        <span class="icon- prev">Prev</span>
+      </a>
+      {% endif %} {% for i in pages_list %}
+      <a
+        href="/trainings?page={{i}}&search_word={{search_word}}&date_from={{date_from}}&date_to={{date_to}}"
+        ><span class="{% if i == page %} active {% endif %}">{{i}}</span></a
+      >
+
+      {% endfor %} {% if has_next.bool is True %}
+
+      <a
+        href="/trainings?page={{has_next.page}}&search_word={{search_word}}&date_from={{date_from}}&date_to={{date_to}}"
+      >
+        <span
+          href="/trainings?page={{has_next.page}}&search_word={{search_word}}&date_from={{date_from}}&date_to={{date_to}}"
+          class="icon- next"
+          >Next</span
+        >
+      </a>
+      {% endif %}
+    </div>
+    {% else %}
+
+    <div class="paginator">
+      {% if has_previous.bool is True %}
+      <a
+        href="/trainings?page={{has_previous.page}}&search_word={{search_word}}&date_from={{date_from}}&date_to={{date_to}}"
+      >
+        <span class="icon- prev">Prev</span>
+      </a>
+      {% endif %} {% if page == 1 %}
+      <a
+        href="/trainings?page={{1}}&search_word={{search_word}}&date_from={{date_from}}&date_to={{date_to}}"
+        ><span class="active">1</span></a
+      >
+      <span class="">...</span>
+      <a
+        href="/trainings?page={{num_pages}}&search_word={{search_word}}&date_from={{date_from}}&date_to={{date_to}}"
+        ><span class="">{{num_pages}}</span></a
+      >
+      {% elif page == num_pages %}
+      <a
+        href="/trainings?page={{1}}&search_word={{search_word}}&date_from={{date_from}}&date_to={{date_to}}"
+        ><span class="">1</span></a
+      >
+      <span class="">...</span>
+      <a
+        href="/trainings?page={{page}}&search_word={{search_word}}&date_from={{date_from}}&date_to={{date_to}}"
+        ><span class="active">{{num_pages}}</span></a
+      >
+      {% else %}
+      <a
+        href="/trainings?page={{1}}&search_word={{search_word}}&date_from={{date_from}}&date_to={{date_to}}"
+        ><span class="">1</span></a
+      >
+      <span class="">...</span>
+      <a
+        href="/trainings?page={{page}}&search_word={{search_word}}&date_from={{date_from}}&date_to={{date_to}}"
+        ><span class="active">{{page}}</span></a
+      >
+      <span class="">...</span>
+      <a
+        href="/trainings?page={{num_pages}}&search_word={{search_word}}&date_from={{date_from}}&date_to={{date_to}}"
+        ><span class="">{{num_pages}}</span></a
+      >
+      {% endif %} {% if has_next.bool is True %}
+
+      <a
+        href="/trainings?page={{has_next.page}}&search_word={{search_word}}&date_from={{date_from}}&date_to={{date_to}}"
+      >
+        <span
+          href="/trainings?page={{has_next.page}}&search_word={{search_word}}&date_from={{date_from}}&date_to={{date_to}}"
+          class="icon- next"
+          >Next</span
+        >
+      </a>
+      {% endif %}
+    </div>
+    {% endif %} {% endif %}
+  </center>
+  {% else %}
+  <center><h1 class="strong">Aucun formation</h1></center>
+  {% endif %}
+</section>
+{% endblock %}

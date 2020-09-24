@@ -1,0 +1,288 @@
+{% extends 'base_2.html' %}
+{% load static %}
+
+{% block title %} International BBA {% endblock %}
+
+{% block styles %}
+
+ <link rel="stylesheet" href="{% static 'pages/home/home.css'%}">
+ <link rel="stylesheet" href="{% static 'pages/home/responsive_home.css'%}">
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'pages/home/home.js' %}" charset="utf-8"></script>
+
+{% endblock %}
+{% block content %}
+<br><br>
+     <section class="container-home home-bg" >
+        <div class="details">
+          <h1 class="very-strong  " style="margin-bottom:0" >INTERNATIONAL BBA</h1>
+          <h1  style class="medium  low-margin">Better Business Advisory</h1>
+          <br><br>
+          <h1 class="medium2" style="letter-spacing:.5mm;" >Partenaire de votre réussite et succès<br>
+ Cabinet de formation continue et de consulting<br>
+ agrée par l’Etat Tunisien sous le n° 52-249-19</h1>
+          <br><br>
+          <a href="/presentation" class="backgrounded-btn strong" >Présentation</a>
+          <a data-modal-id="modal-1" class="backgrounded-btn backgrounded-btn-flat strong" >Catalogue 2020</a>
+        </div>
+     </section>
+
+     <section>
+       <br><br>
+       <center>
+       <h1 class="medium upper" >Pourquoi nous choisir ?</h1>
+       <br/><br/>
+         <div class="card-2 low-radius">
+            <div class="image">
+              <img src="https://image.flaticon.com/icons/svg/1585/1585323.svg" />
+            </div>
+            <div class="details">
+              <b>Qualité-Prix</b>
+              <p>Des prix bien étudiés avec la bonne qualité de nos services afin de satisfaire nos clients.</p>
+            </div>
+         </div>
+         <div class="card-2 low-radius">
+            <div class="image">
+              <img src="https://image.flaticon.com/icons/png/512/1170/1170616.png" />
+            </div>
+            <div class="details">
+              <b>Top domaines</b>
+              <p>Des formations qui ciblent les besoins réels des entreprises nationales et internationales.</p>
+            </div>
+         </div>
+         <div class="card-2 low-radius">
+            <div class="image">
+              <img src="https://image.flaticon.com/icons/svg/1584/1584942.svg" />
+            </div>
+            <div class="details">
+              <b>Apprentissage rapide</b>
+              <p>Qualification de nos consultants et formateurs avec une méthode pédagogique innovant et unique.</p>
+            </div>
+         </div>
+        </center>
+        <br/>
+     </section>
+
+    <!-- <section  class="backgrounded-section" >
+          <center><h1 class="medium" >Nos environnement</h1><br/></center>
+         <br>
+         <center>
+                <i id="scroll-left"  class="icon-left btn-icon left"></i>
+                <i id="scroll-right"  class="icon-right btn-icon right" ></i>
+              </center>
+         <div  id="parent-scroller" className="">
+           <div  class="scrolled-container" >
+
+              <div id="scroller" class="container">
+                <a class="container-3">
+                  <img src="https://i0.wp.com/decoratrend.com/wp-content/uploads/2019/04/Unordinary-Diy-Open-Space-Office-Design-Ideas-17.jpg?ssl=1" />
+                </a>
+                <a class="container-3">
+                  <img src="https://www.quietrev.com/wp-content/uploads/2015/09/The-Myth-of-the-Larger-Than-Life-Leader_SOURCE_stocksy.jpg" />
+                </a>
+
+                <a class="container-3">
+                  <img src="https://pictures.bureauxapartager.com/3ef9bf10-b32c-4415-a65f-3c65bda84ed8/-/crop/2397x1599/0,1/-/preview/-/quality/lighter/-/resize/700x/-/format/webp/" />
+                </a>
+                <a class="container-3">
+                  <img src="https://officesnapshots.com/wp-content/uploads/2016/04/symantec-office-design-12-700x467.jpg" />
+                </a>
+
+              </div>
+
+             </div>
+
+           </div>
+           <br><br>
+         </div>
+     </section> -->
+
+     <section class="" >
+       <center>
+           <br><br>
+           <h1 class="medium upper" >Nos services</h1>
+           <br><br>
+
+       <div class="grid-4" >
+           <article class="product" >
+             <div class="img-part">
+               <img src="https://i.pinimg.com/564x/93/bd/4b/93bd4b5d1e2bb548a0438db9edda9016.jpg" />
+               <div class="details">
+                 <h2>Séminaires en Inter-entreprises</h2>
+                 <p>Nos actions inter entreprises regroupent du personnel d'entreprises de secteurs d'activtés variés...</p>
+                 <a href="/services/inter-entreprises">Lisez plus</a>
+               </div>
+             </div>
+           </article>
+           <article class="product" >
+             <div class="img-part">
+               <img src="https://i.pinimg.com/564x/b6/47/70/b6477084794a5505e5cc39f11bd9f11b.jpg" />
+               <div class="details">
+                 <h2>Séminaires en Intra-entreprises</h2>
+                 <p>Nos actions intra entreprises sont des formations sur mesure qui s'adoptent aux spécificités de l'entreprise...</p>
+                 <a href="/services/intra-entreprises">Lisez plus</a>
+               </div>
+             </div>
+           </article>
+           <article class="product" >
+             <div class="img-part">
+               <img src="https://i.pinimg.com/564x/00/d7/5f/00d75f07fa281e937c427ad330edd727.jpg" />
+               <div class="details">
+                 <h2>Conseil en formation</h2>
+                 <p>International BBA vous assiste essentiellement dans:<br><br>
+
+                       - Le diagnostic de vos besoins en formations<br><br>
+                       - La gestion de la formation par les comptétences...
+                 </p>
+                 <a href="/services/consulting">Lisez plus</a>
+               </div>
+             </div>
+           </article>
+
+       </div>
+       </center>
+       <br>
+     </section>
+     {% if soon_trainings or articles %}
+      <section class="backgrounded-section-grey" >
+        {% if soon_trainings  %}
+         <center>
+           <h1 class=" medium upper" >Prochaines formations</h1><br>
+         <div class="grid-4">
+           {% for i in soon_trainings %}
+             <a href="/training/{{i.slug}}" class="article-1" >
+               <div class="image-side">
+                 <img src="{{i.formated_image}}" />
+               </div>
+               <div class="details">
+
+                 {% with formated_date=i.formated_date.date %}
+                   <h3 class="date icon-" >Du {{formated_date.start_date|date:"d / m"}} à {{formated_date.end_date|date:"d / m"}}</h3>
+                 {% endwith %}
+                 <b>{{i.title}}</b>
+               </div>
+             </a>
+           {% endfor %}
+
+         </div>
+       <br><br>
+       {% endif %}
+
+       </center>
+       {% if articles %}
+       <center><h1 class="medium upper" >Actualités</h1></center><br/>
+       <center>
+       <div swiper="" class="pos-rl">
+
+        
+
+        <div style="display: flex; align-items: center;justify-content: center;" scroll=""  class=" horz-scroll-container over-hd  flex ai-cr">
+
+          
+          {% for i in  articles %}
+                  <a href="/news/{{i.slug}}" class="card-3">
+                    <div class="img-part">
+                      <img src="{{i.formated_image}}" />
+                    </div>
+                    <div class="details">
+                      <h3 class="" >{{i.title}}</h3>
+                      <small><b>Publié :</b> {{i.creation_date|date:"M d, Y"}}</small>
+                    </div>
+                  </a>
+          {% endfor %}
+
+
+        </div>
+        <div style="width:100%;height:100%;text-align: center;" class="">
+         
+          <i left="" id="scroll-left"  class="icon-left btn-icon left"></i>
+           <i right="" id="scroll-right"  class="icon-right btn-icon right" ></i>
+        </div>
+      </div>
+    </center>
+    {% endif %}
+
+     </section>
+     {% endif %}
+
+     {% if testimonials %}
+     <section class="backgrounded-section" >
+         <center>
+           <h1 class="medium upper" >Nos témoignages</h1>
+           <br><br><br>
+         <div class="grid-3" >
+           {% for i in testimonials %}
+             <article class="card-4" >
+               <div class="quote">
+                 <img src="{% static 'pages/home/quote.png' %}">
+               </div>
+               <div class="profile">
+                   <img src="{{i.formated_image}}">
+                   <div class="block" >
+                     <b>{{i.full_name}}</b>
+                     <small>{{i.profession}}</small>
+                   </div>
+               </div>
+               <p>{{i.message}}</p>
+             </article>
+           {% endfor %}
+
+         </div>
+         </center>
+         <br>
+     </section>
+     {% endif %}
+
+
+
+     {% if clients %}
+     <br><br>
+     <section class="" >
+         <center><h1 class="medium" >NOS CLIENTS</h1><br/></center>
+
+
+
+<div swiper="" class="pos-rl">
+
+       
+        <div style="display: flex; align-items: center;justify-content: center;" scroll=""  class=" horz-scroll-container over-hd  flex ai-cr">
+
+          {% for i in clients %}
+                  <a class="container-logo">
+                    <img src="{{i.formated_logo}}" />
+                  </a>
+                {% endfor %}
+                
+
+
+        </div>
+        <div style="width:100%;height:100%;text-align: center;" class="">
+         
+          <i left="" id="scroll-left"  class="icon-left btn-icon left"></i>
+           <i right="" id="scroll-right"  class="icon-right btn-icon right" ></i>
+        </div>
+      </div>
+     </section>
+     {% endif %}
+
+     <br/>
+
+
+     <section>
+       <center id="modal-1" class="modal-container">
+         <!-- <center> -->
+         <div class="container-6 top-bordered">
+           <h1  class="small" >Merci de mettre votre e-mail pour vous envoyer notre catalogue</h1><br/><br/>
+
+           <form id="catalogue_form"  method="post" class="form-2" >
+               <input placeholder="Email" name="email" >
+               <small id="email_error" class="errors" ></small>
+               <button class="btn small" >Envoyer</button>
+           </form>
+         </div>
+
+       </center>
+   </section>
+{% endblock %}

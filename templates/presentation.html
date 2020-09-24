@@ -1,0 +1,90 @@
+{% extends 'base_2.html' %}
+{% load static %}
+
+{% block title %} International BBA {% endblock %}
+
+{% block styles %}
+
+  <link rel="stylesheet" href="{% static 'pages/presentation/presentation.css'%}">
+  <link rel="stylesheet" href="{% static 'pages/presentation/responsive_presentation.css'%}">
+{% endblock %}
+
+
+{% block content %}
+<br><br><br><br><br><br>
+<section  class="container-1" >
+   <div class="details">
+     <div class="bordered-title "  ><h1 class="line-1 upper" >INTERNATIONAL BBA</h1> <br><h1 class="line-2" > Better Business Advisory</h1></div><br/><br/>
+     <h1 class="small" > Crée en 2019 , International BBA est un cabinet du formation continue et de consulting agrée sous le n°52-249-19.<br><br>
+       Membre de l'UTICA, International BBA est une marque déposée à l'INORPI.
+    </h1>
+     <br/><br/>
+     <a href="/contact" class="backgrounded-btn strong" >Contactez-nous</a>
+     <!-- <a href="/trainings" class="backgrounded-btn backgrounded-btn-flat strong" >Nos formations</a> -->
+
+   </div>
+   <div class="image">
+     <img src="https://landkit.goodthemes.co/assets/img/illustrations/illustration-2.png" />
+   </div>
+</section>
+<br/><br/>
+<section class="backgrounded-section">
+  <center>
+    <h1 class="medium upper">Trouvez-nous</h1><br/>
+    <iframe class="video"  src="https://www.youtube.com/embed/_gvTH4Uopks" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <br/>
+  </center>
+</section>
+<section style="background:#f6faff" class="container-1" >
+  <div class="image">
+    <img src="https://cdn.dribbble.com/users/3270174/screenshots/6542062/illustration_coach.png" />
+  </div>
+   <div class="details">
+     <div class="bordered-title upper" style="border-color:#ef6c00" ><h1 class="line-1" >INTERNATIONAL BBA </h1> <br><h1 class="line-2" >Activités</h1></div><br/><br/>
+     <h1 class="small" >
+       Notre cabinet est un acteur de formation pour entreprises qui accompagne ses clients à partir des activités suivantes : la formation continue et le consulting.
+     </h1>
+     <br/><br/>
+
+     <a href="/trainings" class="backgrounded-btn backgrounded-btn-flat strong" >Nos activités</a>
+
+   </div>
+
+</section>
+
+<section  class="container-1" >
+
+   <div class="details">
+     <div class="bordered-title upper" ><h1 class="line-1" >INTERNATIONAL BBA </h1> <br><h1 class="line-2" >Modules</h1></div><br/><br/>
+
+     <h1 class="small" >
+       Notre cabinet vous offre des formations adaptées et personnalisées du capital humain en inter et en intra entreprises dans les domaines touchant les différentes activités de l'entreprise.
+     </h1>
+     <br/><br/>
+
+
+
+     <a href="/modules?filter_by=m-f" class="backgrounded-btn  strong" >Modules fonctionnels</a>
+     <a href="/modules?filter_by=m-t" class="backgrounded-btn backgrounded-btn-flat strong" >Modules techniques</a>
+   </div>
+   <div class="image">
+     <img src="https://cdn.dribbble.com/users/2260392/screenshots/6422943/6.jpg" />
+   </div>
+
+</section>
+<!-- <section class="container-5" >
+  <center>
+    <h1 class="medium upper colored">Agrément</h1><br/>
+    <div class="grand-image" class="image">
+      <img   src="{% static 'pages/presentation/agrement.png' %}">
+    </div>
+  </center>
+</section> -->
+
+
+
+
+
+
+
+{% endblock %}

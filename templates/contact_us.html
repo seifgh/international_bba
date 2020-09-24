@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Contactez nous {% endblock %}
+
+{% block styles %}
+
+  <link rel="stylesheet" href="{% static 'pages/contact_us/contact_us.css'%}">
+  <link rel="stylesheet" href="{% static 'pages/contact_us/responsive_contact_us.css'%}">
+{% endblock %}
+
+{% block scripts %}
+
+
+
+<script src="{% static 'pages/contact_us/contact_us.js' %}" charset="utf-8"></script>
+
+
+
+{% endblock %}
+{% block content %}
+      <section class=" sized-container" >
+        <center>  <h1 class="strong upper white"  > Contactez-nous </h1> </center><br/>
+          <center>
+            <div class="card-modern">
+              <div class="part-1">
+                  <div class="underlined-small" ><h1>Nos coordonnées</h1> <hr> </div> <br/>
+                  <h3>  <b>E-mail :</b><br> internationalbba@topnet.tn <br> skander.boussenna@topnet.tn  </h3>
+                  <h3> <b> Adresse : </b> Av. Hedi Nouira, Imm. Chama, App n° 2 et 7 Skanes Monastir 5000  </h3>
+                  <h3> <b> Tél : </b>(+216) 73 902 452  </h3>
+                  <h3>  <b> Mobile :</b>(+216) 98 523 941  </h3>
+                  <h3> <b> Fax :</b>(+216) 73 902 452  </h3>
+
+                  <br/><br/>
+                  <div class="to-bottom">
+                    <div class="underlined-small" ><h1>Suivez-nous sur</h1> <hr></div>
+                    <a class="social-link facebook" ><i class="icon-facebook" ></i></a>
+                    <a class="social-link instagram" ><i class="icon-instagram" ></i></a>
+                      <a class="social-link youtube" ><i class="icon-youtube" ></i></a>
+                  </div>
+
+              </div>
+              <div class="part-2">
+                 <div class="underlined-small" > <h2>N’hésitez pas à nous contacter !</h2>  <hr> </div>
+                 <br/>
+                <form id="contact_us_form" method="post" class="form-2" >
+                  <div class="grid-2">
+                    <div class="icon-input">
+                      <input maxlength="50" placeholder="Nom" name="first_name" >
+                      <small id="first_name_error" class="errors" ></small>
+                    </div>
+                    <div class="icon-input">
+                      <input maxlength="50" placeholder="Prénom" name="last_name" >
+                      <small id="last_name_error"  class="errors" ></small>
+                    </div>
+                  </div>
+
+                    <div class="icon-input">
+                      <input placeholder="Email" name="email" >
+                      <small id="email_error" class="errors" ></small>
+                    </div>
+                    <div class="icon-input">
+                      <input maxlength="20" placeholder="Téléphone" name="phone" >
+                      <small id="phone_number_error" class="errors" ></small>
+                    </div>
+
+                  <input maxlength="50" value="{{subject}}"  placeholder="Sujet" name="subject">
+                  <small id="subject_error" class="errors" ></small>
+
+                  <textarea maxlength="300" name="message" placeholder="Message (optionelle)" ></textarea><br/>
+                  <button class="btn" id="submit" >Envoyer</button>
+                </form>
+              </div>
+            </div>
+            <h1 class="medium  black location upper" > Notre localisation <i class=" black icon-location"></i></h1>
+            <br/>
+            <iframe class="map-location" src="https://www.google.com/maps/embed?pb=!1m17!1m8!1m3!1d809.2066969968317!2d10.801887176173501!3d35.77963095719348!3m2!1i1024!2i768!4f13.1!4m6!3e6!4m0!4m3!3m2!1d35.779450499999996!2d10.8023736!5e0!3m2!1sfr!2stn!4v1578161796308!5m2!1sfr!2stn"  frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+          </center>
+      </section>
+{% endblock %}
+<!--
+<i class="icon-location">
+<i class="icon-phone">
+<i class="icon-mobile">
+<i class="icon-fax">
+<i class="icon-mail-alt"> -->

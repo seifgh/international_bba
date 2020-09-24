@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block styles %}
+
+  <link rel="stylesheet" href="{% static 'pages/training/training.css'%}">
+  <link rel="stylesheet" href="{% static 'pages/training/responsive_training.css'%}">
+{% endblock %}
+
+{% block scripts %}
+
+<script src="{% static 'pages/training/training.js' %}" charset="utf-8"></script>
+
+{% endblock %}
+{% block content %}
+      <section class="sized-container" >
+
+        <center>  <h1 class="strong ellipsis-title white upper"  >{{title}}</h1> </center><br/>
+        <center>
+        <article class="container-8">
+          <div class="card-modern-2">
+            <div class="part-1">
+                <img src="{{image}}" />
+            </div>
+            <div class="part-2">
+              <h2>{{title}}</h2>
+                {% if modules %}
+                <h3><b>Module : </b>
+                  {% for i in modules %}
+                   <a href="/module/{{i.slug}}" > {{i.title}} </a>
+                  {% endfor %}
+                 </h3>
+                {% endif %}
+              <h3><b>Date debut : </b>{{date.start_date|date:"d / m / Y"}}</h3>
+              <h3><b>Date fin : </b>{{date.end_date|date:"d / m / Y"}}</h3>
+              <h3><b>Durée : </b>{{duration}}</h3>
+              <br/>
+              <a data-modal-id="modal-1"  class="btn">Inscription</a>
+              <a href="#details" class="btn bg-whitesmoke">Détails</a>
+
+            </div>
+          </div>
+        </article>
+        <article class="container-8">
+
+          <div id="details" class="nav-selector">
+            <div class="menu-bar">
+              <a id="selector-page-1" class="active" >Description</a>
+              {% if dates %}
+                <a id="selector-page-2" >Autres dates</a>
+              {% endif %}
+            </div>
+            <div class="pages">
+              <div  id="page-1" class="show" >
+                 {{ description|safe }}
+              </div>
+              <div id="page-2">
+                <center>
+                <div class="grid-4">
+                  {% for i in dates %}
+                    <article class="article-1" >
+                    <div class="image-side">
+                      <img src="{{image}}" />
+                    </div>
+                    <div class="details">
+                      <h3 class="date icon-" >Du {{i.start_date|date:"d / m"}} à {{i.end_date|date:"d / m"}}</h3>
+                      <b>{{ title }}</b>
+                    </div>
+                  </article>
+                  {% endfor %}
+
+              </div>
+              </center>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        {% if  related %}
+          <article class="container-8">
+            <center>
+            <h2 class="medium2 ">Formations dans la même module</h2>
+            <br/>
+            <div class="grid-4">
+              {% for i in related %}
+              <a href="/training/{{i.slug}}" class="article-1" >
+                <div class="image-side">
+                  <img src="{{i.formated_image}}" />
+                </div>
+                <div class="details">
+
+                  {% with formated_date=i.formated_date.date %}
+                    <h3 class="date icon-" >Du {{formated_date.start_date|date:"d / m"}} à {{formated_date.end_date|date:"d / m"}}</h3>
+                  {% endwith %}
+                  <b>{{i.title}}</b>
+                </div>
+              </a>
+              {% endfor %}
+
+          </div>
+          </center>
+          </article>
+        {% endif %}
+
+        </center>
+      </section>
+      <center id="modal-1" class="modal-container">
+        <!-- <center> -->
+        <div class="container-6 top-bordered">
+          <h1 id="register" class="medium " >Inscription</h1><br/><br/>
+          <form id="training-form" action="/registration/create" method="post" class="form-2" >
+            <input style="display:none;" placeholder="Nom" name="training" value="{{id}}" >
+            <div class="grid-2">
+              <div class="icon-input">
+                <input maxlength="50" placeholder="Nom" name="first_name" >
+                <small id="first_name_error" class="errors" ></small>
+              </div>
+              <div class="icon-input">
+                <input maxlength="50" placeholder="Prénom" name="last_name" >
+                <small id="last_name_error"  class="errors" ></small>
+              </div>
+            </div>
+
+              <div class="icon-input">
+                <input placeholder="Email" name="email" >
+                <small id="email_error" class="errors" ></small>
+              </div>
+              <div class="icon-input">
+                <input maxlength="20" placeholder="Téléphone" name="phone" >
+                <small id="phone_number_error" class="errors" ></small>
+              </div>
+
+            <input maxlength="50"  placeholder="Address" name="adress">
+            <small id="subject_error" class="errors" ></small>
+
+            <textarea maxlength="300" name="message" placeholder="Message (optionelle)" ></textarea>
+            <input type="checkbox" name="price_demanded" > <b>Demande de devis</b><br/>
+            <button class="btn" >Envoyer</button>
+
+          </form>
+        </div>
+        <!-- </center> -->
+      </center>
+
+{%  endblock %}

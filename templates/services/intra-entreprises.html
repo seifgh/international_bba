@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} International BBA {% endblock %}
+
+{% block styles %}
+
+  <link rel="stylesheet" href="{% static 'pages/service/service.css'%}">
+  <link rel="stylesheet" href="{% static 'pages/service/responsive_service.css'%}">
+{% endblock %}
+
+{% block content %}
+
+<section class="bg-sized-container intra-bg" >
+  <center>
+    <br>
+    <img class="small-image" src="{% static 'pages/service/skyline.svg' %}" >
+    <h1 class="strong white" > Les séminaires en intra-entreprises </h1>
+    <br>
+  </center>
+  <br><br>
+    <article class="container-5">
+      <center>
+        <div class="titled-paragraph">
+          <h3 class="medium2 light  colored upper"> Description </h3>
+          <p>Nos actions intra entreprises sont des formations sur mesure qui s’adoptent aux spécifications réelles de l’entreprise.<br><br>
+            Faire l’effort de comprendre vos réalités opérationnelles, afin que nos actions de formation servent vos priorités.<br><br>
+En effet, l’employeur peut faire bénéficier ses employés d’une formation spécifique à son entreprise tout en décidant la date et le lieu de la formation.<br><br>
+International BBA vous accompagne en agissant à la fois sur l’évolution des compétences, sur les process et les pratiques de votre organisation. <br><br>
+Cette formation peut être dispensée, soit chez le client, soit dans nos locaux à Monastir, soit dans un hôtel (selon la demande).<br><br>
+Les actions intra entreprises s’articulent autour de trois axes essentiels :
+<ul style="text-align:left" >
+  <li>Préparation, diagnostic , constat de la situation</li>
+  <li>Formation proprement dite</li>
+  <li>Evaluation de la formation acquise</li>
+
+</ul>
+
+</p>
+        </div>
+        <h3 class="medium light  colored upper">BESOIN D’UNe formation en intra ?</h3><br><br>
+        <a href="/contact?subject=Les séminaires en intra-entreprises" class="backgrounded-btn strong" >Contactez-nous</a>
+      </center>
+
+    </article>
+</section>
+
+{% endblock %}

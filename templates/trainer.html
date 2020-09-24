@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Formateurs {% endblock %}
+
+{% block styles %}
+
+  <link rel="stylesheet" href="{% static 'pages/trainer/trainer.css'%}">
+  <link rel="stylesheet" href="{% static 'pages/trainer/responsive_trainer.css'%}">
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'pages/trainer/trainer.js' %}" charset="utf-8"></script>
+
+{% endblock %}
+{% block content %}
+<section class="sized-container" >
+  <br>
+  <center>  <h1 class="strong white upper"  >Espace formateur</h1> </center>
+  <br>
+  <center>
+  <article class="container-7">
+    <center>
+    <h1 id="register" class="medium2 " > Merci de remplir le formulaire ci-dessous, pour rejoindre notre équipe formateur.</h1><br/><br/>
+    </center>
+    <form id="trainer-form" method="post" class="form-2" enctype="multipart/form-data" >
+
+      <div class="grid-2">
+        <div class="icon-input">
+          <input maxlength="50" type="text" placeholder="Nom" name="first_name" >
+          <small id="first_name_error" class="errors" ></small>
+        </div>
+        <div class="icon-input">
+          <input maxlength="50" type="text" placeholder="Prénom" name="last_name" >
+          <small id="last_name_error"  class="errors" ></small>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="icon-input">
+          <input type="text" placeholder="Email" name="email" >
+          <small id="email_error" class="errors" ></small>
+        </div>
+        <div class="icon-input">
+          <input maxlength="20" type="text" placeholder="Téléphone" name="phone" >
+          <small id="phone_number_error" class="errors" ></small>
+        </div>
+      </div>
+
+      <small id="subject_error" class="errors" ></small>
+      <b id="file-input-open" style="margin-left:5px"> Curriculum vitae ( cv ), type doit étre pdf ou png, taille maximale est 5mb </b>
+      <input  type="file"   placeholder="Cv" name="cv">
+      <small id="file_error" class="errors" ></small>
+      <input maxlength="50" type="text"  placeholder="Profession" name="profession">
+      <small id="profession_error" class="errors" ></small>
+      <textarea maxlength="300" name="message" placeholder="Message (optionelle)" ></textarea><br/>
+
+
+      <button class="btn" >Envoyer</button>
+
+    </form>
+  </article>
+</section>
+{% endblock %}

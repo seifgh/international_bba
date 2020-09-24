@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="{% static 'ibba_logo_icon.png' %}" />
+
+     <title> {% block title %} {% endblock %} </title>
+    <style>
+        html{
+            visibility:hidden;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){ document.querySelector('html').style.visibility = 'visible';}  , false);
+
+    </script>
+    <script src="{% static 'jquery.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script type="text/javascript" > const reCAPTCHA_site_key = '{{reCAPTCHA_site_key}}';</script>
+    
+    <script src="https://www.google.com/recaptcha/api.js?render={{reCAPTCHA_site_key}}"></script>
+    <link href="{% static 'fontello-icons/css/fontello.css' %}" rel="stylesheet">
+    <link href="{% static 'pages/base.css' %}" rel="stylesheet">
+    <link href="{% static 'pages/responsive_base.css' %}" rel="stylesheet">
+
+    {% block styles %}
+    {% endblock %}
+  </head>
+  <body>
+    <header>
+      <p id="notf" class="notf " ></p>
+      <nav class="navbar" >
+        <a id="top-logo"  href="/" class="logo-link" >
+          <img   src="{% static 'ibba_logo.png' %}"  >
+        </a>
+          <div class="links" id="links" >
+            <a id="close" class="text-icon" > &times; </a>
+            <a class='{% if request.resolver_match.url_name == "presentation" %} active {% endif %}' href="/presentation">Présentation</a>
+            <div class="dropdown">
+              <a class='{% if request.resolver_match.url_name == "services" %} active {% endif %}' href="#" >Nos services<i class="icon-" ></i></a>
+              <div class="space"> </div>
+              <div class="toggle-list">
+                <a href="/services/inter-entreprises" >Séminaires en inter-entreprises</a>
+                <a href="/services/intra-entreprises" >Séminaires en intra-entreprises</a>
+                <a href="/services/consulting" >Conseil en formation</a>
+              </div>
+            </div>
+
+
+
+            <div class="dropdown">
+              <a class='{% if request.resolver_match.url_name == "modules" %}active{% endif %}' href="#" >Nos modules <i class="icon-" ></i></a>
+              <div class="space"> </div>
+
+              <div class="toggle-list">
+                {% for i in base_modules %}
+                  <a href="/module/{{i.slug}}" >{{i.title}}</a>
+                {% endfor %}
+                  <a href="/modules">Voir tout </a>
+              </div>
+            </div>
+            <a class='{% if request.resolver_match.url_name == "trainings" %}active{% endif %}' href="/trainings">Nos formations</a>
+            <a class='{% if request.resolver_match.url_name == "trainer" %}active{% endif %}' href="/trainer">Espace formateur</a>
+            <a class='{% if request.resolver_match.url_name == "news" %}active{% endif %}' href="/news">Actualités</a>
+            <a class='{% if request.resolver_match.url_name == "contact" %}active{% endif %}' href="/contact">Contact</a>
+          </div>
+
+          <div class="icons" >
+            <a class="toggle-search " id="search-show" > <i  class="icon-search"></i> </a>
+
+            <a id="menu" ><i class="icon-align-left" ></i></a>
+
+          </div>
+        </nav>
+        <nav class="search-nav">
+          <form class="search-form" method="get" action="/trainings" >
+            <input id="search-input" type="text" placeholder="Rechercher" name="search_word" >
+            <button type="submit" class="icon-search"></button>
+          </form>
+          <div class="icons" >
+            <a class="toggle-search text-icon" id="search-hide" > &times;  </a>
+          </div>
+        </nav>
+    </header>
+
+    <main>
+      {% block content %}{% endblock %}
+    </main>
+    <br><br><br>
+    <footer>
+
+
+      <section class="out-top-container">
+        <div class="part-1" >
+          <h1 style="color:#317be8;" >Newsletter</h1>
+          <!-- <p>Vous souhaitez recevoir de l’information, suivre les Formation de CIFOC ?</p> -->
+
+
+        </div>
+        <form   id="subscribe-form" class="form-3 part-2">
+          <input placeholder="Mettre votre adresse e-mail" type="text" name="email" value="">
+          <button>S'inscrire</button>
+        </form>
+      </section>
+
+      <section class="footer-links">
+
+        <div class="part"  >
+          <h3>NOS COORDONNÉES</h3>
+
+
+          <!-- <p> Crée en 2019 , International BBA est un cabinet du formation continue et de consulting agrée sous le n°52-249-19.</p><br> -->
+          <div class="cord">
+            <b class="">E-mail : </b>
+            <p> internationalbba@topnet.tn <br> skander.boussenna@topnet.tn </p>
+          </div>
+          <div class="cord"> <b class=""> Adresse : </b><p>Av. Hedi Nouira, Imm. Chama, App n° 2 et 7 Skanes Monastir 5000 </p> </div>
+          <div class="cord"> <b class=""> Tél : </b> <p> (+216) 73 902 452 </p> </div>
+          <div class="cord">  <b class=""> Mobile :</b> <p> (+216) 98 523 941 </p> </div>
+          <div class="cord"> <b class=""> Fax :</b> <p> (+216) 73 902 452 </p> </div>
+
+
+        </div>
+
+
+        <div class="part"  >
+          <h3>NOS SERVICES</h3>
+          <a href="/services/inter-entreprises" >Séminaires en inter-entreprises</a>
+          <a href="/services/intra-entreprises" >Séminaires en intra-entreprises</a>
+          <a href="/services/consulting" >Conseil en formation</a>
+
+        </div>
+
+        <div class="part"  >
+          <h3>NOS MODULES</h3>
+          {% for i in base_modules %}
+            <a href="/module/{{i.slug}}" >{{i.title}}</a>
+          {% endfor %}
+          <a href="/modules" class="" >Voir tout</a>
+
+        </div>
+
+        <div class="part"  >
+          <h3>SUIVEZ-NOUS SUR</h3>
+          <a class="social-link facebook"><i class="icon-facebook"></i></a>
+          <a class="social-link instagram"><i class="icon-instagram"></i></a>
+          <a class="social-link youtube"><i class="icon-youtube"></i></a>
+          <br><br><br>
+          <a>Developed by Seif Gharres</a>
+          <a>seifgharrese.developer@gmail.com</a>
+
+        </div>
+
+      </section>
+        <br>
+        <center>
+            <div class="logo">
+            <img src="{% static 'ibba_transparent_logo.png' %}" >
+          </div>
+        </center><br><br>
+      <section class="footer-bottom-container" >
+
+        <small>International BBA ( Better Business Advisory )  Copyright ©  2020 Copyright Holder All Rights Reserved.</small>
+      </section>
+
+
+    </footer>
+
+    <script src="{% static 'pages/base.js' %}" charset="utf-8"></script>
+    <script>
+    window.addEventListener('DOMContentLoaded', function(){
+
+      //navbar hiding while scrolling
+      const navbar = document.querySelector('header > .navbar');
+
+      let prevScrollpos = window.pageYOffset;
+
+      window.addEventListener( 'scroll',function(){
+        
+        let currentScrollPos = window.pageYOffset;
+
+        if (prevScrollpos > currentScrollPos + 20 ) 
+          navbar.classList.remove('hide');
+        else if ( currentScrollPos > prevScrollpos  + 40) 
+          navbar.classList.add('hide');
+
+        //update scroll positon
+        prevScrollpos = currentScrollPos;
+      })
+    });
+    </script>
+    {% block scripts %}
+    {% endblock %}
+  </body>
+
+</html>

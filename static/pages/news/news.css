@@ -1,0 +1,238 @@
+
+/*end animations */
+.small-image{
+  position: relative;
+  display: block;
+  width: 100px;
+  height: 100px;
+}
+.article-2{
+  position: relative;
+  display: flex;
+  align-items: top;
+  width: calc(100% - 50px);
+  height: auto;
+  padding: 15px;
+  margin: 20px 10px;
+  background: white;
+  border-bottom: .3mm solid whitesmoke;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 0px 12px -6px rgba(140,140,140,0.56);
+  -moz-box-shadow: 0px 0px 12px -6px rgba(140,140,140,0.56);
+  box-shadow: 0px 0px 12px -6px rgba(140,140,140,0.56);
+  cursor: pointer;
+}
+
+.article-2 *{
+  color:black
+}
+
+.article-2 .img-side{
+  position: relative;
+  display: block;
+  height: 200px;
+  width: 200px;
+  overflow: hidden;
+  border-radius: 3px;
+}
+.article-2 .details{
+  position: relative;
+  display: block;
+  width: calc( 100% - 220px );
+  padding-left: 10px;
+  margin-left: 10px;
+}
+.article-2 .details h3{
+  font-size: 25px;
+  margin-top: 0;
+}
+.article-2:hover h3{
+  text-decoration: underline;
+}
+
+.article-description{
+  display: block;
+  position: relative;
+}
+.article-description img{
+  position: relative;
+  display: block;
+  max-width: calc(100% - 10px);
+  margin: 0 auto;
+  border-radius: 3px;
+}
+.paginator{
+  position: relative;
+  bottom: 0;
+  display: flex;
+  white-space: nowrap;
+  overflow-x: auto;
+  align-items: center;
+  width: max-content;
+  max-width: calc(100% - 20px);
+  background: white;
+  height: auto;
+  padding: 10px 10px;
+}
+.paginator span{
+  position: relative;
+  display: block;
+  padding: 10px;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  font-weight: 550;
+  background: white;
+  border: .3mm solid whitesmoke;
+  color: #3e4549;
+  text-align: center;
+  cursor: pointer;
+  margin: 0 5px;
+  border-radius: 2px;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently*/
+            -webkit-box-shadow: 0px 0px 12px -6px rgba(140,140,140,0.56);
+            -moz-box-shadow: 0px 0px 12px -6px rgba(140,140,140,0.56);
+            box-shadow: 0px 0px 12px -6px rgba(140,140,140,0.56);
+
+}
+.card-3{
+  position: relative;
+  display: inline-flex;
+  align-items: top;
+  height: 150px;
+  width: 400px;
+  background: white;
+  margin: 10px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 12px -6px rgba(140,140,140,0.56);
+  -moz-box-shadow: 0px 0px 12px -6px rgba(140,140,140,0.56);
+  box-shadow: 0px 0px 12px -6px rgba(140,140,140,0.56);
+  overflow: hidden;
+}
+.card-3 .img-part{
+  position: relative;
+  display: block;
+  height: 150px;
+  width: 150px;
+}
+.card-3  .details{
+  position: relative;
+  display: block;
+  height: 15px;
+  width: 230px;
+  padding: 0 10px;
+  text-align: left;
+}
+.card-3  .details h3{
+  position: relative;
+  display: block;
+  white-space: normal;
+  z-index: 1;
+}
+.card-3  .details small{
+
+  position: absolute;
+  display: block;
+  width: 100%;
+  top: 120px;
+  z-index: 2;
+  background-color: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 255));
+}
+.paginator span.active{
+  background: #317be8;
+  border-color: #317be8;
+  color: white;
+}
+.paginator span.prev{
+  margin-right: 10px;
+  border-radius: 2px;
+  padding-left: 20px;
+  line-height: 20px;width: auto;
+}
+.paginator span.prev:before{
+  position: relative;
+  content: "\f177";
+  left:-10px;
+   line-height: 20px;
+  font-size: 18px;
+  transition: .2s;
+}
+.paginator span.next{
+  margin-left: 10px;
+  border-radius: 2px;
+  padding-right: 20px;
+  line-height: 20px;
+  width: auto;
+}
+.paginator span.next::after{
+  position: relative;
+  content: "\f178";
+  left:10px;
+   line-height: 20px;
+  font-size: 18px;
+  transition: .2s;
+}
+
+@media only screen and (max-width: 550px){
+  .container-5{
+    width: 100%;
+    padding: 20px 0;
+  }
+  .article-2{
+    width: calc(100% - 30px);
+    margin: 10px 5px;
+    padding: 10px;
+  }
+
+.article-2 .img-side{
+  height: 100px;
+  width: 100px;
+}
+.article-2 .details{
+  position: relative;
+  display: block;
+  width: calc( 100% - 100px );
+  padding-left: 10px;
+  margin-left: 10px;
+}
+.article-2 .details h3{
+  font-size: 18px;
+  margin-top: 0;
+}
+
+
+
+  .medium{
+    font-size: 20px;
+  }
+
+  .strong{
+    font-size: 35px;
+  }
+  .card-3{
+    height: 100px;
+    width: calc(100% - 10px);
+    margin:10px 5px;
+  }
+  .card-3 .img-part{
+    height: 100px;
+    width: 100px;
+  }
+  .card-3  .details{
+    height: 100px;
+    width: calc( 100% - 120px );
+    padding: 0 10px;
+  }
+  .card-3  .details h3{
+    font-size: 16px;
+  }
+  .card-3  .details small{
+    top: 70px;
+  }
+
+}

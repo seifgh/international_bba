@@ -1,0 +1,107 @@
+
+
+/*end animations */
+
+.bg-sized-container{
+  padding-top: 80px;
+  padding-bottom: 0;
+  position: relative;
+  display: block;
+  height:auto;
+  /* margin-bottom: 1000px; */
+  width: 100%;
+  overflow-y:visible;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.8); /* fallback for old browsers */
+  background-repeat: no-repeat;
+  background-size: 100% 500px;
+}
+.intra-bg{
+  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.8)), url("intra.jpg") ;
+  background-image: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.8)), url("intra.jpg");
+}
+.inter-bg{
+  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.8)), url("inter.jpg") ;
+  background-image: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.8)), url("inter.jpg");
+}
+.consult-bg{
+  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.8)), url("consult.jpg") ;
+  background-image: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.8)), url("consult.jpg");
+}
+/* url("intra.jpg") */
+.black-center-bg{
+  background:black; padding:20px; width:max-content;transform:translateX(50%);
+}
+
+.titled-paragraph p{
+  position: relative;
+  display: block;
+  height: auto;
+  width: 100%;
+  text-align: left;
+  color: black;
+
+}
+
+
+
+.card-5{
+  position: relative;
+  display: flex;
+  align-items: top;
+  height: auto;
+  width: 350px;
+  padding: 10px;
+  margin: 10px auto;
+  background: white;
+  /* border-left: 1mm solid #317be8; */
+  /* -webkit-box-shadow: 0px 0px 12px -6px rgba(140,140,140,0.56);
+  -moz-box-shadow: 0px 0px 12px -6px rgba(140,140,140,0.56);
+  box-shadow: 0px 0px 12px -6px rgba(140,140,140,0.56); */
+}
+
+.card-5 *{
+  color:black;
+}
+
+.card-5 .logo{
+  position: relative;
+  display: block;
+  height: 45px;width: 45px;
+  background: transparent;
+}
+.card-5 .logo img{
+  height: 45px;
+  width: 45px;
+}
+
+.card-5 .details{
+  position: relative;
+  display: block;
+  width: calc( 100% - 65px );
+  margin-left:10px;
+  padding-left: 10px;
+  /* border-left: 1mm solid whitesmoke; */
+
+  text-align: left;
+}
+.card-5 .details h3{
+  position: relative;
+  text-decoration: none;
+  display: block;
+  margin: 0 0 20px 0;
+  font-size: 18px;
+  transition: .2s;
+}
+.card-5:hover{
+  cursor: pointer;
+}
+.card-5:hover .details h3{
+  text-decoration: underline;
+}
+.card-5 .details p{
+  position: relative;
+  display: block;
+  margin: 10px 0 0 0;
+  font-size: .9em;
+}

@@ -1,0 +1,71 @@
+@media only screen and (max-width: 1200px){
+
+
+}
+
+@media only screen and (max-width: 900px){
+
+  .card-modern{
+    width: 750px;
+  }
+  .map-location{
+    width: 750px;
+  }
+  .medium{
+    font-size: 30px;
+  }
+}
+@media only screen and (max-width: 800px){
+
+  .card-modern{
+    display: block;
+    width: calc(100% - 20px);
+    margin: 10px;
+  }
+  .card-modern .part-1{
+    width: calc(100% - 20px);
+
+  }
+  .card-modern .part-2{
+    width: calc(100% - 20px);
+  }
+  .to-bottom{
+    position: relative;
+  }
+  .map-location{
+    width: 500px;
+  }
+  .medium{
+    font-size: 30px;
+  }
+
+}
+@media only screen and (max-width: 600px){
+  .grid-2{
+    display: block;
+  }
+}
+@media only screen and (max-width: 550px){
+
+  .map-location{
+    width: calc(100% - 10px);
+    height: 400px;
+  }
+  .medium{
+    font-size: 20px;
+  }
+  .card-modern .part-1 h3{
+    font-size: 14px;
+  }
+  .underlined-small > *{
+    font-size: 20px;
+  }
+  .strong{
+    font-size: 35px;
+  }
+}
+@media only screen and (max-width: 320px){
+  .form-1 input[type=text]{
+    width: 200px;
+  }
+}

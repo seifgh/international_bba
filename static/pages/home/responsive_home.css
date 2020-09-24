@@ -1,0 +1,241 @@
+
+@media only screen and (max-width: 1200px){
+
+}
+
+@media only screen and (max-width: 1000px){
+
+  .container-1 .details{
+    z-index: 2;
+      padding: 50px 10px;
+  }
+  .container-1 .image{
+    display: block;
+    position: absolute;
+    top: 0;
+    z-index: 0;
+    height: 100%;
+  }
+  .btn{
+    font-size: 16px;
+  }
+  .bordered-title{
+    border-left:1mm solid #317be8;
+    border-right:1mm solid #317be8;
+
+    padding: 10px 5px;
+    font-size: 35px;
+    color: #317be8;
+    z-index: 2
+  }
+  /* .medium{
+    font-size: 30px;
+  } */
+  .container-3{
+    width: 600px;
+    height: auto;
+  }
+
+  .container-4{
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+  }
+  .card-4{
+    margin: 20px 10px;
+  }
+  .card-4:nth-child(2){
+    bottom: 0;
+  }
+  .card-2:nth-child(odd){
+        bottom : 0;
+    }
+    .product:nth-child(even){
+        bottom : 0;
+    }
+
+}
+@media only screen and (max-width: 800px){
+
+  /*.home-bg{
+    background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.8)), url("background_responsive.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.8)), url("https://cdn.dribbble.com/users/1568450/screenshots/5715862/teamwork_white_2_dribbble-01-01.png");
+  }*/
+  .container-home{
+    height: auto;
+  }
+  .container-home .details{
+    padding: 20px 10px;
+    /* text-align: left; */
+    width: calc(100% - 20px);
+  }
+
+}
+
+@media only screen and (max-width: 600px){
+  .container-6{
+    width: calc(100% - 30px);
+    padding: 10px;
+  }
+  .scrolled-container{
+      overflow-x: visible;
+  }
+  .btn-icon.left{
+    display: none;
+  }
+  .btn-icon.right{
+    display: none;
+  }
+  .container-logo{
+    width: 80px;
+  }
+
+
+}
+
+@media only screen and (max-width: 500px){
+  .container-1 .details{
+    padding-left: 10px;
+    padding-right: 10px;
+    width: calc(100% - 20px);
+  }
+  .btn{
+    font-size: 16px;
+    padding: 12px;
+  }
+  .btn-icon, .btn-icon{
+    transform: scale(.8);
+    margin: 5px;
+  }
+  .bordered-title{
+    border-left:1mm solid #317be8;
+    border-right:1mm solid #317be8;
+    padding: 10px 5px;
+    font-size: 25px;
+    color: #317be8;
+    z-index: 2;
+  }
+  /* .medium{
+    font-size: 25px;
+  } */
+  .medium2{
+    font-size: 20px;
+  }
+  .container-3{
+    width: 250px;
+    height: auto;
+  }
+
+  .container-4{
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+  }
+  .card-4{
+    margin: 20px 5px;
+    width: 280px;
+  }
+  .card-4 p{
+    font-size: 14px;
+  }
+  .quote{
+    right: 0;
+  }
+  .card-4:nth-child(2){
+    bottom: 0;
+  }
+  .card-3{
+    height: 100px;
+    width: auto;
+    max-width: 350px;
+    margin:10px 5px;
+  }
+  .card-3 .img-part{
+    height: 100px;
+    width: 100px;
+  }
+  .card-3  .details{
+    height: 100px;
+    width: calc( 100% - 120px );
+    padding: 0 10px;
+  }
+  .card-3  .details h3{
+    font-size: 16px;
+  }
+  .card-3  .details small{
+    top: 70px;
+  }
+
+}
+@media only screen and (max-width: 360px){
+
+  .btn{
+    font-size: 14px;
+    padding: 12px;
+  }
+  .bordered-title{
+    border-left:1mm solid #317be8;
+    border-right:1mm solid #317be8;
+    padding: 10px 5px;
+    font-size: 22px;
+    color: #317be8;
+    z-index: 2;
+  }
+
+  .container-3{
+    width: 250px;
+    height: auto;
+  }
+
+  .container-4{
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+  }
+  .card-4{
+    margin: 20px 10px;
+  }
+  .card-4:nth-child(2){
+    bottom: 0;
+  }
+
+
+}
+@media only screen and (max-width: 320px){
+
+  .btn{
+    font-size: 14px;
+    padding:10px 8px;
+  }
+  .bordered-title{
+    border-left:1mm solid #317be8;
+    border-right:1mm solid #317be8;
+    padding: 10px 5px;
+    font-size: 22px;
+    color: #317be8;
+    z-index: 2;
+  }
+
+  .container-3{
+    width: 250px;
+    height: auto;
+  }
+
+  .container-4{
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+  }
+  .card-4{
+    margin: 20px 10px;
+  }
+  .card-4:nth-child(2){
+    bottom: 0;
+  }
+  .card-4{
+    margin: 20px 5px;
+    width: calc(100% - 40px);
+  }
+
+
+}
