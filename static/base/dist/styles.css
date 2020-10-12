@@ -1,0 +1,17 @@
+.dropdown {
+  position: relative;
+}
+.dropdown .drop-menu {
+  display: none;
+}
+.dropdown:hover .drop-menu {
+  display: flex;
+}
+
+.bg-triangles {
+  background-image: url(../../images/Triangles-Background.webp), linear-gradient(to bottom right, #173c74, #295fb1);
+}
+
+.grecaptcha-badge {
+  display: none !important;
+}

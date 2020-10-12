@@ -1,55 +1,67 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base.html' %} {% load static %} {% block title %}Séminaires en
+Inter-entreprises | International bba{% endblock %} {% block main %}
+<div
+  class="relative lg:grid block grid-cols-2 items-center xl:px-32 lg:px-10 px-4 py-5"
+>
+  <div anim="fade-down" class="md:pr-10">
+    <h1 class="md:text-6xl sm:text-5xl text-3xl font-bold">
+      Séminaires en Inter-entreprises
+    </h1>
 
-{% block title %} International BBA {% endblock %}
-
-{% block styles %}
-
-  <link rel="stylesheet" href="{% static 'pages/service/service.css'%}">
-  <link rel="stylesheet" href="{% static 'pages/service/responsive_service.css'%}">
-{% endblock %}
-
-{% block content %}
-
-<section class="bg-sized-container inter-bg" >
-  <center>
-    <br><br>
-    <img class="small-image" src="{% static 'pages/service/meeting-room.svg' %}" >
-    <h1 class="strong white" > Les séminaires en inter-entreprises </h1>
-    <br><br>
-  </center>
-  <br><br>
-    <article class="container-5">
-      <center>
-        <div class="titled-paragraph">
-          <h3 class="medium2 light  colored upper"> Description </h3>
-          <p>Nos actions inter entreprises regroupent du personnel d'entreprises de secteurs d'activités variés, ce qui favorise et enrichit les échanges d'expériences. <br><br>
-            Nous vous proposons une large gamme de programme de formation inter est proposée aux entreprises au moyen de notre catalogue de formation.<br><br>
-            Les contenus des programmes de formation sont adaptés aux métiers par le biais d’exercices, études de cas, et mises en situation personnalisées.  Managers et collaborateurs reçoivent des outils communs de sorte à pérenniser les apports de compétences après la fin des stages et ainsi faciliter l’entraînement.<br><br>
-            Afin d'aboutir avec précison aux exigences de l'entreprise, tous nos programmes de formation sont modulables, personnalisables ou crées sur mesure.<br><br>
-
-          </p>
-        </div>
-
-        <h3 class="medium2 light  colored upper">Nous organisons des modules très variés</h3><br><br>
-        <div class="grid-3">
-          {% for i in modules %}
-          <a href="/module/{{i.slug}}" class="card-5" >
-            <center>
-               <div  class="logo">
-                <img src="{{i.formated_logo}}" />
-              </div>
-            </center>
-            <div class="details">
-              <h3>{{i.title}}</h3>
-              <p>{{i.description}}</p>
-            </div>
-          </a>
-          {% endfor %}
-
-        </div>
-      </center>
-    </article>
-</section>
-
+    <div class="text-left md:w-96">
+      <p class="font-medium md:text-base text-sm mt-2">
+        Nos actions inter entreprises regroupent du personnel d'entreprises de
+        secteurs d'activités variés, ce qui favorise et enrichit les échanges
+        d'expériences.
+      </p>
+      <p class="font-medium md:text-base text-sm mt-2">
+        Nous vous proposons une large gamme de programme de formation inter est
+        proposée aux entreprises au moyen de notre catalogue de formation.
+      </p>
+      <p class="font-medium md:text-base text-sm mt-2">
+        Les contenus des programmes de formation sont adaptés aux métiers par le
+        biais d’exercices, études de cas, et mises en situation personnalisées.
+        Managers et collaborateurs reçoivent des outils communs de sorte à
+        pérenniser les apports de compétences après la fin des stages et ainsi
+        faciliter l’entraînement.
+      </p>
+      <p class="font-medium md:text-base text-sm mt-2">
+        Afin d'aboutir avec précison aux exigences de l'entreprise, tous nos
+        programmes de formation sont modulables, personnalisables ou crées sur
+        mesure.
+      </p>
+    </div>
+  </div>
+  <img
+    anim="fade-up"
+    class="sm:w-192 w-full py-5"
+    src="{% static 'images/image-2.jpg' %}"
+    alt="business solution"
+  />
+</div>
+<div class="flex flex-col items-center">
+  <h1 class="md:text-5xl sm:text-4xl text-2xl font-bold text-center">
+    Nous organisons des modules très variés
+  </h1>
+  <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-20 p-2">
+    {% for i in modules %}
+    <a
+      href="/module/{{i.slug}}"
+      class="inline-flex align-top items-start md:w-96 w-full md:mx-4 mb-10"
+    >
+      <img
+        class="md:w-16 w-12 mr-5"
+        src="{{i.formated_logo}}"
+        alt="{{i.title}}"
+      />
+      <div class="border-l-2 border-gray pl-4">
+        <h2 class="font-semibold mb-2">{{i.title}}</h2>
+        <p class="md:text-sm text-xs font-medium">{{i.description}}</p>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %} {% block scripts %}
+<script src="{% static 'pages/index.js' %}"></script>
 {% endblock %}

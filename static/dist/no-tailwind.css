@@ -1,0 +1,253 @@
+.no-tailwind {
+  /* Begin bidirectionality settings (do not change) */
+}
+.no-tailwind html,
+.no-tailwind address,
+.no-tailwind blockquote,
+.no-tailwind body,
+.no-tailwind dd,
+.no-tailwind div,
+.no-tailwind dl,
+.no-tailwind dt,
+.no-tailwind fieldset,
+.no-tailwind form,
+.no-tailwind frame,
+.no-tailwind frameset,
+.no-tailwind h1,
+.no-tailwind h2,
+.no-tailwind h3,
+.no-tailwind h4,
+.no-tailwind h5,
+.no-tailwind h6,
+.no-tailwind noframes,
+.no-tailwind ol,
+.no-tailwind p,
+.no-tailwind ul,
+.no-tailwind center,
+.no-tailwind dir,
+.no-tailwind hr,
+.no-tailwind menu,
+.no-tailwind pre {
+  display: block;
+  unicode-bidi: embed;
+}
+.no-tailwind li {
+  display: list-item;
+}
+.no-tailwind head {
+  display: none;
+}
+.no-tailwind table {
+  display: table;
+}
+.no-tailwind tr {
+  display: table-row;
+}
+.no-tailwind thead {
+  display: table-header-group;
+}
+.no-tailwind tbody {
+  display: table-row-group;
+}
+.no-tailwind tfoot {
+  display: table-footer-group;
+}
+.no-tailwind col {
+  display: table-column;
+}
+.no-tailwind colgroup {
+  display: table-column-group;
+}
+.no-tailwind td,
+.no-tailwind th {
+  display: table-cell;
+}
+.no-tailwind caption {
+  display: table-caption;
+}
+.no-tailwind th {
+  font-weight: bolder;
+  text-align: center;
+}
+.no-tailwind caption {
+  text-align: center;
+}
+.no-tailwind body {
+  margin: 8px;
+}
+.no-tailwind h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+.no-tailwind h2 {
+  font-size: 1.5em;
+  margin: 0.75em 0;
+}
+.no-tailwind h3 {
+  font-size: 1.17em;
+  margin: 0.83em 0;
+}
+.no-tailwind h4,
+.no-tailwind p,
+.no-tailwind blockquote,
+.no-tailwind ul,
+.no-tailwind fieldset,
+.no-tailwind form,
+.no-tailwind ol,
+.no-tailwind dl,
+.no-tailwind dir,
+.no-tailwind menu {
+  margin: 1.12em 0;
+}
+.no-tailwind h5 {
+  font-size: 0.83em;
+  margin: 1.5em 0;
+}
+.no-tailwind h6 {
+  font-size: 0.75em;
+  margin: 1.67em 0;
+}
+.no-tailwind h1,
+.no-tailwind h2,
+.no-tailwind h3,
+.no-tailwind h4,
+.no-tailwind h5,
+.no-tailwind h6,
+.no-tailwind b,
+.no-tailwind strong {
+  font-weight: bolder;
+}
+.no-tailwind blockquote {
+  margin-left: 40px;
+  margin-right: 40px;
+}
+.no-tailwind i,
+.no-tailwind cite,
+.no-tailwind em,
+.no-tailwind var,
+.no-tailwind address {
+  font-style: italic;
+}
+.no-tailwind pre,
+.no-tailwind tt,
+.no-tailwind code,
+.no-tailwind kbd,
+.no-tailwind samp {
+  font-family: monospace;
+}
+.no-tailwind pre {
+  white-space: pre;
+}
+.no-tailwind button,
+.no-tailwind textarea,
+.no-tailwind input,
+.no-tailwind select {
+  display: inline-block;
+}
+.no-tailwind big {
+  font-size: 1.17em;
+}
+.no-tailwind small,
+.no-tailwind sub,
+.no-tailwind sup {
+  font-size: 0.83em;
+}
+.no-tailwind sub {
+  vertical-align: sub;
+}
+.no-tailwind sup {
+  vertical-align: super;
+}
+.no-tailwind table {
+  border-spacing: 2px;
+}
+.no-tailwind thead,
+.no-tailwind tbody,
+.no-tailwind tfoot {
+  vertical-align: middle;
+}
+.no-tailwind td,
+.no-tailwind th,
+.no-tailwind tr {
+  vertical-align: inherit;
+}
+.no-tailwind s,
+.no-tailwind strike,
+.no-tailwind del {
+  text-decoration: line-through;
+}
+.no-tailwind hr {
+  border: 1px inset;
+}
+.no-tailwind ol,
+.no-tailwind ul,
+.no-tailwind dir,
+.no-tailwind menu,
+.no-tailwind dd {
+  margin-left: 40px;
+}
+.no-tailwind ol {
+  list-style-type: decimal;
+}
+.no-tailwind ul {
+  list-style-type: disc;
+}
+.no-tailwind ol ul,
+.no-tailwind ul ol,
+.no-tailwind ul ul,
+.no-tailwind ol ol {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.no-tailwind u,
+.no-tailwind ins {
+  text-decoration: underline;
+}
+.no-tailwind br:before {
+  content: "\a";
+  white-space: pre-line;
+}
+.no-tailwind center {
+  text-align: center;
+}
+.no-tailwind :link,
+.no-tailwind :visited {
+  text-decoration: underline;
+}
+.no-tailwind :focus {
+  outline: thin dotted invert;
+}
+.no-tailwind BDO[DIR=ltr] {
+  direction: ltr;
+  unicode-bidi: bidi-override;
+}
+.no-tailwind BDO[DIR=rtl] {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}
+.no-tailwind *[DIR=ltr] {
+  direction: ltr;
+  unicode-bidi: embed;
+}
+.no-tailwind *[DIR=rtl] {
+  direction: rtl;
+  unicode-bidi: embed;
+}
+@media print {
+  .no-tailwind h1 {
+    page-break-before: always;
+  }
+  .no-tailwind h1,
+.no-tailwind h2,
+.no-tailwind h3,
+.no-tailwind h4,
+.no-tailwind h5,
+.no-tailwind h6 {
+    page-break-after: avoid;
+  }
+  .no-tailwind ul,
+.no-tailwind ol,
+.no-tailwind dl {
+    page-break-before: avoid;
+  }
+}

@@ -1,0 +1,83 @@
+{% extends 'base-transparent.html' %} {% load static %} {% block title %}Modules
+| International bba{% endblock %} {% block main %}
+<div class="flex w-full flex-col items-center">
+  <div
+    class="flex bg-triangles w-full flex items-center justify-around md:px-12 md:pb-12 px-4 pb-4 pt-24 text-white"
+  >
+    <div anim="fade-left">
+      <h1 class="md:text-6xl sm:text-5xl text-4xl font-bold">Nos modules</h1>
+      <p class="font-medium md:text-base text-sm mt-2 ml-2 md:w-96">
+        Notre cabinet vous offre des formations adaptées et personnalisées du
+        capital humain en inter et en intra entreprises dans les domaines
+        touchant les différentes activités de l'entreprise.
+      </p>
+    </div>
+    <img
+      anim="fade-right"
+      src="{% static 'images/modules.svg' %}"
+      alt="modules"
+      class="md:w-40 sm:w-20 w-16 ml-2"
+    />
+  </div>
+  <div anim="fade-up" class="flex flex-col items-center">
+    {% if modules_f.exists or modules_t.exists %} {% if modules_f.exists %}
+    <h2
+      class="md:text-4xl sm:text-3xl text-2xl font-bold text-center md:my-10 my-5"
+    >
+      Modules fonctionnels - {{count_f}}
+    </h2>
+
+    <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 p-4">
+      {% for l in modules_f %}
+      <a
+        href="{% url 'module' l.slug %}"
+        class="inline-flex align-top items-start md:w-96 w-full md:mx-4 mb-10"
+      >
+        <img
+          class="md:w-16 w-10 mr-5"
+          src="{{l.formated_logo}}"
+          alt="{{l.title}}"
+        />
+        <div class="border-l-2 border-gray pl-4">
+          <h2 class="md:text-md text-sm font-semibold mb-2">{{l.title}}</h2>
+          <p class="md:text-sm text-xs font-medium">{{l.description}}</p>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% endif %} {% if modules_t.exists %}
+    <h2
+      class="md:text-4xl sm:text-3xl text-2xl font-bold text-pri-dark text-center md:my-10 my-5"
+    >
+      Modules techniques - {{count_t}}
+    </h2>
+
+    <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 p-4">
+      {% for l in modules_t %}
+      <a
+        href="{% url 'module' l.slug %}"
+        class="inline-flex align-top items-start md:w-96 w-full md:mx-4 mb-10"
+      >
+        <img
+          class="md:w-16 w-10 mr-5"
+          src="{{l.formated_logo}}"
+          alt="{{l.title}}"
+        />
+        <div class="border-l-2 border-gray pl-4">
+          <h2 class="md:text-md text-sm font-semibold mb-2">{{l.title}}</h2>
+          <p class="md:text-sm text-xs font-medium">{{l.description}}</p>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% endif %} {% else %}
+    <h1 class="md:text-6xl sm:text-5xl text-4xl font-bold text-pri-dark">
+      Aucun module
+    </h1>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %} {% block scripts %}
+<script src="{% static 'pages/index.js' %}"></script>
+{% endblock %}

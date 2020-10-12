@@ -1,0 +1,194 @@
+{% extends 'base.html' %} {% load static %} {% block links %}
+<link rel="stylesheet" href="{% static  'dist/no-tailwind.css' %}" />
+{% endblock %} {% block title %}{{ title }} | International bba {% endblock %}
+{% block main %}
+<div class="flex flex-col items-center md:my-10 my-4">
+  <div class="lg:flex items-center p-2">
+    <div
+      anim="fade-left"
+      class="relative block z-10 md:h-120 md:w-120 sm:h-96 w-full h-64 lg:-mr-6 z-10 lg:p-0 lg:-mb-0 sm:-mb-16 -mb-8 p-4"
+    >
+      <img
+        src="{{image}}"
+        alt="{{ title }}"
+        class="h-full w-full object-cover bg-gray-light rounded-lg"
+      />
+    </div>
+    <div
+      anim="fade-right"
+      class="relative bg-white rounded-lg shadow-lg border border-gray sm:p-8 p-4 lg:pt-8 sm:pt-16 pt-8 lg:pl-12 md:w-120 w-full"
+    >
+      <h1 class="md:text-3xl sm:text-2xl text-xl font-semibold">{{title}}</h1>
+      <p class="font-medium md:text-sm text-xs mt-4">{{short_description}}</p>
+
+      <hr class="my-6 border-gray" />
+
+      <div class="flex sm:text-base text-sm">
+        <h3 class="mr-4 font-semibold">Module:</h3>
+        {% for i in modules %}
+        <a href="/module/{{i.slug}}" class="hover:underline text-pri mr-2">
+          {{i.title}}
+        </a>
+        {% endfor %}
+      </div>
+      <div class="flex mt-2 sm:text-base text-sm">
+        <h3 class="mr-4 font-semibold">Date debut:</h3>
+        <h4>{{date.start_date|date:"d/m/Y"}}</h4>
+      </div>
+      <div class="flex mt-2 sm:text-base text-sm">
+        <h3 class="mr-4 font-semibold">Date fin:</h3>
+        <h4>{{date.end_date|date:"d/m/Y"}}</h4>
+      </div>
+      <div class="flex mt-2 sm:text-base text-sm">
+        <h3 class="mr-4 font-semibold">Durée:</h3>
+        <h4>{{duration}}</h4>
+      </div>
+
+      <hr class="my-6 border-gray" />
+
+      <a
+        href="{% url 'training-registration' slug %}"
+        class="inline-block text-center sm:w-auto w-full font-semibold bg-pri text-white sm:text-lg text-sm rounded-md px-6 py-3 shadow-lg"
+      >
+        Inscription
+      </a>
+      <a
+        href="{% url 'contact' %}?training_id={{id}}"
+        class="inline-flex sm:w-auto w-full items-center justify-center font-semibold text-pri sm:text-xl text-sm px-4 py-3"
+        >Contact
+      </a>
+    </div>
+  </div>
+
+  <div class="md:mt-16 mt-8">
+    <div
+      class="flex flex-wrap md:justify-center items-start overflow-auto mb-2 border-b border-gray p-4"
+    >
+      <h3
+        @click="selectedId = 1"
+        class="inline-block font-semibold sm:text-md text-sm px-4 py-2 cursor-pointer rounded-lg"
+        :class="{'text-white bg-pri shadow': selectedId === 1}"
+      >
+        Description
+      </h3>
+      {% if dates %}
+      <h3
+        @click="selectedId = 2"
+        class="inline-block font-semibold sm:text-md text-sm px-4 py-2 cursor-pointer rounded-lg disabled:cursor-not-allowed disabled:opacity-25"
+        :class="{'text-white bg-pri shadow': selectedId === 2}"
+      >
+        Autres dates
+      </h3>
+      {% else %}
+      <h3
+        class="inline-block font-semibold sm:text-md text-sm px-4 py-2 cursor-pointer rounded-lg cursor-not-allowed opacity-25"
+        :class="{'text-white bg-pri shadow': selectedId === 2}"
+      >
+        Autres dates
+      </h3>
+      {% endif %} {% if related.exists %}
+
+      <h3
+        @click="selectedId = 3"
+        class="inline-block font-semibold sm:text-md text-sm px-4 py-2 cursor-pointer rounded-lg disabled:cursor-not-allowed disabled:opacity-25"
+        :class="{'text-white bg-pri shadow': selectedId === 3}"
+      >
+        Formations dans la même module
+      </h3>
+      {% else %}
+      <h3
+        class="inline-block font-semibold sm:text-md text-sm px-4 py-2 cursor-pointer rounded-lg cursor-not-allowed opacity-25"
+        :class="{'text-white bg-pri shadow': selectedId === 2}"
+      >
+        Formations dans la même module
+      </h3>
+      {% endif %}
+    </div>
+    <div class="p-4">
+      <div v-if="selectedId === 1" class="no-tailwind">
+        {{description|safe}}
+      </div>
+      <div v-else-if="selectedId === 2">
+        {% for i in dates %}
+
+        <div
+          class="inline-block shadow border font-semibold border-gray rounded my-4 mr-4 p-4"
+        >
+          Du
+          <span class="font-bold text-pri mx-1"
+            >{{i.start_date|date:"d/m/Y"}}</span
+          >
+          à
+          <span class="font-bold text-pri ml-1"
+            >{{i.end_date|date:"d/m/Y"}}</span
+          >
+        </div>
+
+        {% endfor %}
+      </div>
+      <div v-else class="grid xl:grid-cols-2 gap-12">
+        {% for i in related %}
+        <div
+          class="relative flex sm:flex-row flex-col sm:items-center items-start"
+        >
+          <div
+            class="relative sm:w-40 sm:h-40 h-64 w-64 sm:-mr-8 sm:-mb-0 -mb-8 sm:px-0 px-4 z-10"
+          >
+            <img
+              class="w-full h-full object-cover bg-gray-light rounded-lg border border-gray"
+              src="{{i.formated_image}}"
+              alt="{{i.title}}"
+            />
+            {% with formated_date=i.formated_date.date %}
+            <div
+              title='Du {{formated_date.start_date|date:"d/m/y"}} à  {{formated_date.end_date|date:"d/m/y"}}'
+              class="absolute top-0 ml-2 mt-2 z-10 shadow-lg flex items-center text-sm font-semibold bg-white text-pri border-full py-2 px-4 rounded-lg"
+            >
+              {{formated_date.start_date|date:"d/m/y"}}
+            </div>
+            {% endwith %}
+          </div>
+          <div
+            class="block sm:w-76 w-full bg-white rounded-lg shadow-lg border border-gray p-4 sm:pt-4 pt-10 sm:pl-12"
+          >
+            <h3 class="block text-sm font-semibold mb-2">{{i.title}}</h3>
+            <p class="md:text-sm text-xs font-medium mb-4">
+              {{i.formated_short_description}}
+            </p>
+            <div class="block">
+              <a
+                href="{% url 'training-registration' i.slug %}"
+                class="inline-block font-semibold bg-pri text-white sm:text-md text-xs rounded-md px-3 py-2 shadow-lg"
+              >
+                Inscription
+              </a>
+              <a
+                href="{% url 'training' i.slug %}"
+                class="inline-flex items-center font-semibold text-pri sm:text-md text-xs px-3 py-2 ml-1 hover:bg-pri-light transform focus:scale-95 rounded-md"
+              >
+                <span>Plus</span>
+                <svg
+                  class="md:h-5 h-4 ml-1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %} {% block scripts %}
+<script src="{% static 'pages/trainings/training.js' %}"></script>
+{% endblock %}

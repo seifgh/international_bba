@@ -1,0 +1,220 @@
+{% extends 'base.html' %} {% load static %} {% block title %} inscription en
+{{title}} | International bba{% endblock %} {% block main %}
+<div class="relative flex flex-col items-center w-full my-10 px-4">
+  <div class="flex lg:flex-row flex-col lg:items-start items-center h-auto">
+    <div
+      anim="fade-left"
+      class="bg-triangles block sm:w-96 w-full p-8 lg:pr-16 pr-8 shadow-lg rounded-lg border border-gray text-white"
+    >
+      <h3 class="font-semibold mb-5 text-xl">{{title}}</h3>
+      <div class="">
+        <p class="font-medium text-xs">{{short_description}}</p>
+        <hr class="my-6 border-gray" />
+        <div class="flex mt-2 sm:text-base text-sm">
+          <h3 class="mr-4 font-semibold">Date debut:</h3>
+          <h4>{{date.start_date|date:"d/m/Y"}}</h4>
+        </div>
+        <div class="flex mt-2 sm:text-base text-sm">
+          <h3 class="mr-4 font-semibold">Date fin:</h3>
+          <h4>{{date.end_date|date:"d/m/Y"}}</h4>
+        </div>
+        <div class="flex mt-2 sm:text-base text-sm">
+          <h3 class="mr-4 font-semibold">Durée:</h3>
+          <h4>{{duration}}</h4>
+        </div>
+      </div>
+    </div>
+    <div
+      anim="fade-right"
+      class="block mt-10 lg:-ml-10 bg-white sm:w-120 w-full sm:p-8 p-4 shadow-lg rounded-lg border border-gray"
+      :class="{'bg-suc-light text-suc border-suc': form.success}"
+    >
+      <transition name="fade">
+        <div v-if="form.success">
+          <h3 class="font-semibold mb-5 text-2xl pb-2 border-b">
+            Merci d'avoir rempli vos informations!
+          </h3>
+          <p class="font-medium md:text-base text-sm mt-2">
+            Merci pour votre inscription.<br />
+            Un de nos collègues vous recontactera bientôt!
+          </p>
+        </div>
+      </transition>
+      <div v-if="!form.success">
+        <h3 class="font-semibold sm:text-5xl text-3xl text-pri">Inscription</h3>
+        <hr class="mb-6 mt-2 border-gray" />
+
+        <form @submit.prevent="submit" method="post" class="">
+          <input class="hidden" name="training" type="text" value="{{id}}" />
+          <div class="grid sm:grid-cols-2 gap-4 my-2">
+            <div>
+              <label class="block text-sm mb-1">Nom</label>
+              <input
+                @blur="validateLastName"
+                :class="{ 'border-dg anim-shake': form.lastName.hasError }"
+                v-model.trim="form.lastName.value"
+                name="last_name"
+                type="text"
+                maxlength="50"
+                placeholder="Votre nom"
+                class="shadow-md w-full border border-gray rounded w-full py-2 px-3 mb-2 focus:outline-none focus:border-pri"
+              />
+              <small v-show="form.lastName.required" class="text-dg"
+                >Ce champ est obligatoire.</small
+              >
+              <small v-show="form.lastName.invalid" class="text-dg"
+                >Ce champ doit contenir entre 2 et 50 caractères.
+              </small>
+            </div>
+            <div>
+              <label class="block text-sm mb-1">Prénom</label>
+              <input
+                @blur="validateFirstName"
+                :class="{ 'border-dg anim-shake': form.firstName.hasError }"
+                v-model.trim="form.firstName.value"
+                name="first_name"
+                type="text"
+                maxlength="50"
+                placeholder="Votre prénom"
+                class="shadow-md w-full border border-gray rounded w-full py-2 px-3 mb-2 focus:outline-none focus:border-pri"
+              />
+              <small v-show="form.firstName.required" class="text-dg"
+                >Ce champ est obligatoire.</small
+              >
+              <small v-show="form.firstName.invalid" class="text-dg"
+                >Ce champ doit contenir entre 2 et 50 caractères.</small
+              >
+            </div>
+          </div>
+          <div class="block my-2">
+            <label class="block text-sm mb-1">Email</label>
+            <input
+              @blur="validateEmail"
+              @change="form.email.alreadyExists = false"
+              :class="{ 'border-dg anim-shake': form.email.hasError }"
+              v-model.trim="form.email.value"
+              name="email"
+              type="text"
+              placeholder="exemple: abcd@mail.com"
+              class="shadow-md w-full border border-gray rounded w-full py-2 px-3 mb-2 focus:outline-none focus:border-pri"
+            />
+            <small v-show="form.email.required" class="text-dg"
+              >Ce champ est obligatoire.</small
+            >
+            <small v-show="form.email.invalid" class="text-dg"
+              >Ce champ est invalide.</small
+            >
+            <small v-show="form.email.alreadyExists" class="text-dg"
+              >Cet email est déjà inscrit à cette formation.</small
+            >
+          </div>
+          <div class="block my-2">
+            <label class="block text-sm mb-1">Téléphone</label>
+            <input
+              @blur="validatePhone"
+              :class="{ 'border-dg anim-shake': form.phone.hasError }"
+              v-model.trim="form.phone.value"
+              name="phone"
+              type="text"
+              maxlength="14"
+              placeholder="forme: +XXX XXXX XXXX"
+              class="shadow-md w-full border border-gray rounded w-full py-2 px-3 mb-2 focus:outline-none focus:border-pri"
+            />
+            <small v-show="form.phone.required" class="text-dg"
+              >Ce champ est obligatoire.</small
+            >
+            <small v-show="form.phone.invalid" class="text-dg"
+              >Ce champ est invalide (forme: +XXX XXXX XXXX).</small
+            >
+          </div>
+          <div class="block my-2">
+            <label class="block text-sm mb-1">Address</label>
+            <input
+              @blur="validateAddress"
+              :class="{ 'border-dg anim-shake': form.address.hasError }"
+              v-model.trim="form.address.value"
+              name="address"
+              type="text"
+              maxlength="95"
+              placeholder="exemple: Rue Assad, Sayada 5035, Monastir"
+              class="shadow-md w-full border border-gray rounded w-full py-2 px-3 mb-2 focus:outline-none focus:border-pri"
+            />
+            <small v-show="form.address.required" class="text-dg"
+              >Ce champ est obligatoire.</small
+            >
+            <small v-show="form.address.invalid" class="text-dg"
+              >Ce champ doit contenir entre 2 et 95 caractères.</small
+            >
+          </div>
+          <div class="block my-2">
+            <label class="block text-sm mb-1"
+              >Message <span class="text-gray ml-1">(optionnel)</span></label
+            >
+            <textarea
+              @blur="validateMessage"
+              v-model.trim="form.message.value"
+              name="message"
+              placeholder=""
+              maxlength="250"
+              class="shadow-md w-full h-24 border border-gray rounded w-full py-2 px-3 mb-2 focus:outline-none focus:border-pri"
+            ></textarea>
+            <small v-show="form.message.invalid" class="text-dg"
+              >Ce champ doit contenir au maximim 250 caractères.</small
+            >
+          </div>
+          <div class="flex items-center">
+            <input
+              v-model="form.priceDemanded.value"
+              type="checkbox"
+              name="price_demanded"
+              class="w-4 h-4"
+            />
+            <span class="ml-2 text-md font-medium">Prix demandés</span>
+          </div>
+          <transition name="fade">
+            <div
+              v-show="form.unexpectedError"
+              class="bg-dg-light border-t-4 border-dg rounded-b text-dg my-4 px-4 py-3 shadow-md"
+              role="alert"
+            >
+              <div class="flex">
+                <div class="py-1 mr-4">
+                  <svg
+                    class="w-8 h-8"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-bold">Erreur</p>
+                  <p class="text-sm">
+                    Une erreur inattendue s'est produite, veuillez vérifier
+                    votre connexion ou recommencer plus tard.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </transition>
+          <button
+            :disabled="form.isLoading"
+            class="inline-block sm:w-auto w-full font-semibold bg-pri text-white sm:text-lg text-sm rounded-md px-6 py-3 shadow-lg mt-4 focus:outline-none"
+            type="submit"
+          >
+            <span v-if="form.isLoading">En traitement ...</span>
+            <span v-else>Envoyer</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block scripts %}
+<script src="{% static 'pages/trainings/register.js' %}"></script>
+{% endblock %}

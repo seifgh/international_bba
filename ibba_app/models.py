@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import Model, CASCADE, CharField, EmailField, SlugField, IntegerField, PositiveIntegerField, DecimalField, PositiveSmallIntegerField, TextField, ForeignKey, URLField, BooleanField, DateTimeField, DateField, OneToOneField, ManyToManyField, ImageField, FileField
+from django.db.models import Model, CASCADE, CharField, EmailField, SlugField, IntegerField, PositiveIntegerField, DecimalField, PositiveSmallIntegerField, TextField, ForeignKey, URLField, BooleanField, DateTimeField, DateField, OneToOneField, ManyToManyField, ImageField, FileField, TextField
 from django.contrib.auth.models import User
 from django.db.models import Max, Min, Sum, Avg
 from django.core.validators import MaxValueValidator, MinValueValidator
@@ -10,17 +10,7 @@ from django.core.exceptions import ValidationError
 from django.conf import settings
 import datetime
 from ckeditor_uploader.fields import RichTextUploadingField
-# Create your models here.
-
-
-# --------------------------constants--------------------------------------
-modules = (
-    ('m-f', 'Module fonctionnel'),
-    ('m-t', 'Module technique'),
-
-)
-
-# --------------------------Usefull Models---------------------------------
+import re
 
 
 class File(Model):
@@ -48,10 +38,7 @@ class File(Model):
             return self.file.name
 
     def __str__(self):
-        if (self.url):
-            return self.url
-        else:
-            return self.file.name
+        return self.formated_file_name
 
 
 class Image(Model):
@@ -64,11 +51,22 @@ class Image(Model):
         if (not(self.url or self.image)):
             raise ValidationError("Two fields are emplty, at lease fill one !")
 
-    def __str__(self):
-        if (self.image):
-            return self.image.url
-        else:
+    @property
+    def formated_image_url(self):
+        if (self.url):
             return self.url
+        else:
+            return self.image.url
+
+    @property
+    def formated_image_name(self):
+        if (self.url):
+            return self.url
+        else:
+            return self.image.name
+
+    def __str__(self):
+        return self.formated_image_name
 
 
 class Date(Model):
@@ -92,6 +90,17 @@ class Date(Model):
 
 # --------------------------Base Models---------------------------------
 
+class Catalogue(Model):
+
+    catalogue_file = ForeignKey(
+        File, related_name="catalogue_file", on_delete=CASCADE)
+
+    creation_date = DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.creation_date.strftime('y-m-d')
+
+
 class Training(Model):
     """ Tableau d'une formation d'un module """
 
@@ -99,6 +108,7 @@ class Training(Model):
     image = ForeignKey(Image, related_name="training_image",
                        on_delete=CASCADE, blank=True)
     slug = SlugField(max_length=80, unique=True)  # Pour assurer le lien ( url)
+    short_description = TextField()
     description = RichTextUploadingField(null=True)
 
     # Tarif (prix courants)
@@ -113,11 +123,13 @@ class Training(Model):
     # unique_together = (("color","size","brand",'model_ref'),)
 
     @property
+    def formated_short_description(self):
+        max_length = 80 if len(self.title) < 30 else 50
+        return self.short_description[0:max_length] + "..." if len(self.short_description) > 50 else self.short_description
+
+    @property
     def formated_image(self):
-        if (self.image.url):
-            return self.image.url
-        else:
-            return self.image.image.url
+        return self.image.formated_image_url
 
     @property
     def formated_date(self):
@@ -146,12 +158,15 @@ class Training(Model):
 
 
 class Module(Model):
-    """ Tableau d'un module d'un module parent """
+    TYPES = (
+        ('m-f', 'Module fonctionnel'),
+        ('m-t', 'Module technique'),
 
+    )
     title = CharField(max_length=80, unique=True)
-    parent_module = CharField(max_length=10, choices=modules)
+    type = CharField(max_length=10, choices=TYPES)
     slug = SlugField(max_length=80, unique=True)  # Pour assurer le lien ( url)
-    description = TextField(max_length=200, blank=True)
+    description = TextField(max_length=250, blank=True)
     logo = ForeignKey(File, related_name="module_logo",
                       on_delete=CASCADE, blank=True)
     # Un Module admet plusieurs formations
@@ -165,10 +180,7 @@ class Module(Model):
 
     @property
     def formated_logo(self):
-        if (self.logo.url):
-            return self.logo.url
-        else:
-            return self.logo.file.url
+        return self.logo.formated_file_url
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
@@ -177,8 +189,6 @@ class Module(Model):
 
     def __str__(self):
         return self.title
-
-# Inscription Model
 
 
 class Registration(Model):
@@ -190,8 +200,8 @@ class Registration(Model):
     phone = CharField(max_length=20)
     # relation avec tableau des formation
     training = ForeignKey(Training, related_name="training", on_delete=CASCADE)
-    adress = CharField(max_length=50)
-    message = TextField(max_length=300, blank=True)
+    address = CharField(max_length=95)
+    message = TextField(max_length=250, blank=True)
     price_demanded = BooleanField(default=False)
 
     verification_key = CharField(max_length=20, blank=True)
@@ -206,12 +216,7 @@ class Registration(Model):
         unique_together = (('email', 'training'),)
 
     def clean(self):
-        phone = self.phone[1:].replace(' ', '')
-        try:
-            int(phone)
-            if (len(phone) < 7 or len(phone) > 14):
-                raise ValidationError({'phone': "Invalid phone number"})
-        except ValueError:
+        if not re.search("^\+?([0-9]{2,3})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$", self.phone):
             raise ValidationError({'phone': "Invalid phone number"})
 
     def __str__(self):
@@ -225,9 +230,10 @@ class Trainer(Model):
     first_name = CharField(max_length=50)
     last_name = CharField(max_length=50)
     email = EmailField(unique=True)
-    phone = CharField(max_length=20)
+    phone = CharField(max_length=14)
+    address = CharField(max_length=95)
+    profession = CharField(max_length=100)
     cv = FileField(upload_to="cvs")
-    profession = CharField(max_length=50)
     message = TextField(max_length=300, blank=True)
 
     verification_key = CharField(max_length=20, blank=True, unique=True)
@@ -242,12 +248,7 @@ class Trainer(Model):
 
     def clean(self):
         errors = {}
-        phone = self.phone[1:].replace(' ', '')
-        try:
-            int(phone)
-            if (len(phone) < 7 or len(phone) > 14):
-                errors['phone'] = "Invalid phone number"
-        except ValueError:
+        if not re.search("^\+?([0-9]{2,3})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$", self.phone):
             errors['phone'] = "Invalid phone number"
 
         if (self.cv):
@@ -266,9 +267,9 @@ class Contact(Model):
     first_name = CharField(max_length=50)
     last_name = CharField(max_length=50)
     email = EmailField(unique=True)
-    phone = CharField(max_length=20)
-    subject = CharField(max_length=50)
-    message = TextField(max_length=200, blank=True)
+    phone = CharField(max_length=15)
+    subject = CharField(max_length=100)
+    message = TextField(max_length=250, blank=True)
 
     # Pour assurer le filtrage des données
     is_viewed = BooleanField(default=False)
@@ -279,12 +280,7 @@ class Contact(Model):
         ordering = ('creation_date', )
 
     def clean(self):
-        phone = self.phone[1:].replace(' ', '')
-        try:
-            int(phone)
-            if (len(phone) < 7 or len(phone) > 14):
-                raise ValidationError({'phone': "Invalid phone number"})
-        except ValueError:
+        if not re.search("^\+?([0-9]{2,3})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$", self.phone):
             raise ValidationError({'phone': "Invalid phone number"})
 
     def __str__(self):
@@ -319,21 +315,18 @@ class Subscriber(Model):
 class Article(Model):
     title = CharField(max_length=50, unique=True)
     slug = SlugField(max_length=50, unique=True)
-    description = RichTextUploadingField()
+    content = RichTextUploadingField()
     main_image = ForeignKey(
         Image, related_name="image_article", on_delete=CASCADE)
     creation_date = DateTimeField(default=timezone.now)  # for ordering
-    is_at_home = BooleanField(default=False)
+    is_new = BooleanField(default=False)
 
     class Meta:
         ordering = ('creation_date', )
 
     @property
     def formated_image(self):
-        if (self.main_image.url):
-            return self.main_image.url
-        else:
-            return self.main_image.image.url
+        return self.main_image.formated_image_url
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
@@ -379,10 +372,7 @@ class Testimonial(Model):
 
     @property
     def formated_image(self):
-        if (self.image.url):
-            return self.image.url
-        else:
-            return self.image.image.url
+        return self.image.formated_image_url
 
     def __str__(self):
         return self.full_name

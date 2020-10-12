@@ -41,8 +41,8 @@ INSTALLED_APPS = [
     'import_export',
     'ckeditor',
     'ckeditor_uploader',
-	
-	'ibba_app'
+
+    'ibba_app'
 ]
 
 MIDDLEWARE = [
@@ -121,7 +121,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
@@ -140,9 +139,8 @@ MEDIA_URL = '/media/'
 # Google captcha settings
 
 
-
-RECAPTCHA_SITE_KEY ="6LdPDMkUAAAAAKNwSrqa1CPg8nQw4KNlzSAHt82C"
-RECAPTCHA_SECRET_KEY = "6LdPDMkUAAAAAEMy5DypWMmhnxK-tJEXnDgh4xpD"
+RECAPTCHA_SITE_KEY = "6LdF4tIZAAAAAFfwDE15HKjEjakgRm5ccEzBHuw_"
+RECAPTCHA_SECRET_KEY = "6LdF4tIZAAAAAA0Hf3sB5Fqm3f5pGqppgit0vZ7P"
 
 
 # Ckeditor settings
@@ -168,6 +166,6 @@ RATELIMIT_ENABLE = False
 RATELIMIT_USE_CACHE = 'default'
 
 # Other vars
-IS_ON_TEST = True
+CURRENT_HOST = "localhost:8000"
+TEST_MODE = False
 CATALOGUE_URL = "https://seifgh.pythonanywhere.com/"
-

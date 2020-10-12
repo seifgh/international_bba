@@ -1,0 +1,114 @@
+{% extends 'base-transparent.html' %} {% load static %} {% block title%}
+Actualités | International bba{% endblock %} {% block main %}
+<div class="flex w-full flex-col items-center">
+  <div
+    class="flex bg-triangles w-full flex items-center justify-around md:px-12 md:pb-12 px-4 pb-4 pt-24 text-white"
+  >
+    <div anim="fade-left">
+      <h1 class="md:text-6xl sm:text-5xl text-4xl font-bold">Actualités</h1>
+      <p class="font-medium md:text-base text-sm mt-2 ml-2 md:w-96">
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy text ever
+        since the 1500s, when an unknown printer took a galley of type and
+        scrambled it to make a type specimen book.
+      </p>
+    </div>
+    <img
+      anim="fade-right"
+      src="{% static 'images/news.svg' %}"
+      alt="modules"
+      class="md:w-40 sm:w-20 w-16 ml-2"
+    />
+  </div>
+  <div anim="fade-up" class="flex flex-col items-center">
+    {% if objects.exists %}
+
+    <div
+      class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 p-4 gap-12 my-10"
+    >
+      {% for i in objects %}
+      <a
+        href="{% url 'article' i.slug %}"
+        class="realtive inline-block align-top w-64 rounded-lg overflow-hidden shadow-md"
+      >
+        <div
+          title='Publié: {{i.creation_date|date:"M d, Y"}}'
+          class="relative w-64 h-64"
+        >
+          <img
+            class="w-full h-full object-cover"
+            src="{{i.formated_image}}"
+            alt="{{i.title}}"
+          />
+          {% if i.is_new %}
+          <div
+            class="absolute top-0 ml-2 mt-2 z-10 shadow-lg flex items-center text-sm font-semibold bg-white text-pri border-full py-2 px-4 rounded-lg"
+          >
+            New
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="p-4">
+          <h2 class="font-semibold text-sm truncate" title="{{i.title}}">
+            {{i.title}}
+          </h2>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% if num_pages > 1 %}
+    <div class="flex items-center justify-center flex-wrap mt-8">
+      {% if has_previous %}
+      <a
+        href="{% url 'news' %}?page={{page|add:-1}}"
+        class="inline-flex items-center justify-center mr-2 my-2 font-medium px-4 h-10 bg-sec text-white rounded"
+      >
+        <svg
+          class="w-6"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </a>
+      {% endif %} {% for i in page_range %}
+      <a
+        href="{% url 'news' %}?page={{i}}"
+        class="inline-flex items-center justify-center mx-1 my-2 font-medium w-10 h-10 {% if page != i %} bg-sec-light text-sec {% else %} bg-sec text-white {% endif %} rounded"
+        >{{i}}</a
+      >
+      {% endfor %} {% if has_next %}
+      <a
+        href="{% url 'news' %}?page={{page|add:1}}"
+        class="inline-flex items-center justify-center ml-2 my-2 font-medium px-4 h-10 bg-sec text-white rounded"
+      >
+        <svg
+          class="w-6"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </a>
+      {% endif %}
+    </div>
+    {% endif %} {% else %}
+    <h1 class="md:text-6xl sm:text-5xl text-4xl font-bold">Aucun article</h1>
+
+    {% endif %}
+  </div>
+</div>
+{% endblock %}{% block scripts %}
+<script src="{% static 'pages/index.js' %}"></script>
+{% endblock %}

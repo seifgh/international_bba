@@ -1,0 +1,190 @@
+{% extends 'base-transparent.html' %} {% load static %} {% block title%}
+Formations | International bba{% endblock %} {% block main %}
+
+<div class="flex w-full flex-col items-center">
+  <div
+    class="bg-triangles w-full flex items-center justify-around md:px-12 md:pb-12 px-4 pb-4 pt-24 text-white"
+  >
+    <div anim="fade-left">
+      <h1 class="md:text-6xl sm:text-5xl text-4xl font-bold">Nos formations</h1>
+      <p class="font-medium md:text-base text-sm mt-2 ml-2 md:w-96">
+        Notre cabinet est un acteur de formation pour entreprises qui accompagne
+        ses clients à partir des formations continue.
+      </p>
+    </div>
+    <img
+      anim="fade-right"
+      src="{% static 'images/trainings.svg' %}"
+      alt="modules"
+      class="md:w-40 sm:w-20 w-16 ml-2"
+    />
+  </div>
+  {% if objects.exists %}
+
+  <div
+    anim="fade-up"
+    class="relative w-full flex md:flex-row flex-col md:items-start items-center lg:mt-10 mt-8"
+  >
+    <div class="lg:sticky top-0 md:w-76 w-full px-4 pb-4">
+      <div
+        class="md:max-h-screen max-h-64 bg-white shadow-lg border border-gray rounded-md p-4 overflow-y-auto"
+      >
+        <div class="flex justify-center items-center h-12 w-full">
+          <svg
+            class="w-6 -mr-8 z-10"
+            fill="gray"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <input
+            v-model="searchKey"
+            class="bg-gray-100 focus:shadow-md border border-gray focus:border-pri rounded-md h-full outline-none w-full py-2 pl-10 pr-4"
+            placeholder="Rechercher un module"
+          />
+        </div>
+
+        <div ref="modules" class="block mt-5">
+          {% for i in modules %}
+          <a
+            v-show="('{{i.title}}').toLowerCase().includes(searchKey.toLowerCase())"
+            href="{% url 'module' i.slug %}"
+            title="{{i.title}}"
+            class="flex flex-row items-center h-12 px-4 my-2 rounded-lg text-gray-700 hover:bg-gray-100"
+          >
+            <img
+              class="w-6 h-6"
+              src="{{ i.formated_logo }}"
+              alt="{{i.title}}"
+            />
+            <h2 class="truncate max-w-64 ml-3 text-x font-semibold">
+              {{i.title}}
+            </h2>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="block mx-4 md:mt-0 mt-12">
+      <div class="grid xl:grid-cols-2 gap-12">
+        {% for i in objects %}
+        <div
+          class="relative flex sm:flex-row flex-col sm:items-center items-start"
+        >
+          <div
+            class="relative sm:w-40 sm:h-40 h-64 w-64 sm:-mr-8 sm:-mb-0 -mb-8 sm:px-0 px-4 z-10"
+          >
+            <img
+              class="w-full h-full object-cover bg-gray-light rounded-lg border border-gray"
+              src="{{i.formated_image}}"
+              alt="{{i.title}}"
+            />
+            {% with formated_date=i.formated_date.date %}
+            <div
+              title='Du {{formated_date.start_date|date:"d/m/y"}} à  {{formated_date.end_date|date:"d/m/y"}}'
+              class="absolute top-0 ml-2 mt-2 z-10 shadow-lg flex items-center text-sm font-semibold bg-white text-pri border-full py-2 px-4 rounded-lg"
+            >
+              {{formated_date.start_date|date:"d/m/y"}}
+            </div>
+            {% endwith %}
+          </div>
+          <div
+            class="block sm:w-76 w-full bg-white rounded-lg shadow-lg border border-gray p-4 sm:pt-4 pt-10 sm:pl-12"
+          >
+            <h3 class="block text-sm font-semibold mb-2">{{i.title}}</h3>
+            <p class="md:text-sm text-xs font-medium mb-4">
+              {{i.formated_short_description}}
+            </p>
+            <div class="block">
+              <a
+                href="{% url 'training-registration' i.slug %}"
+                class="inline-block font-semibold bg-pri text-white sm:text-md text-xs rounded-md px-3 py-2 shadow-lg"
+              >
+                Inscription
+              </a>
+              <a
+                href="{% url 'training' i.slug %}"
+                class="inline-flex items-center font-semibold text-pri sm:text-md text-xs px-3 py-2 ml-1 hover:bg-pri-light transform focus:scale-95 rounded-md"
+              >
+                <span>Plus</span>
+                <svg
+                  class="md:h-5 h-4 ml-1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% if num_pages > 1 %}
+      <div class="flex items-center justify-center flex-wrap mt-8">
+        {% if has_previous %}
+        <a
+          href="{% url 'trainings' %}?page={{page|add:-1}}"
+          class="inline-flex items-center justify-center mr-2 my-2 font-medium px-4 h-10 bg-sec text-white rounded"
+        >
+          <svg
+            class="w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </a>
+        {% endif %} {% for i in page_range %}
+        <a
+          href="{% url 'trainings' %}?page={{i}}"
+          class="inline-flex items-center justify-center mx-1 my-2 font-medium w-10 h-10 {% if page != i %} bg-sec-light text-sec {% else %} bg-sec text-white {% endif %} rounded"
+          >{{i}}</a
+        >
+        {% endfor %} {% if has_next %}
+        <a
+          href="{% url 'trainings' %}?page={{page|add:1}}"
+          class="inline-flex items-center justify-center ml-2 my-2 font-medium px-4 h-10 bg-sec text-white rounded"
+        >
+          <svg
+            class="w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </a>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  {% else %}
+  <h1 class="md:text-6xl sm:text-5xl text-4xl font-bold">Aucun formation</h1>
+  {% endif %}
+</div>
+
+{% endblock %} {% block scripts %}
+<script src="{% static 'pages/trainings/index.js' %}"></script>
+{% endblock %}

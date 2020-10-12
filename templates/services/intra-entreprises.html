@@ -1,48 +1,72 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base.html' %} {% load static %} {% block title %}Séminaires en
+Intra-entreprises | International bba{% endblock %} {% block main %}
+<div
+  class="relative lg:grid block grid-cols-2 items-center xl:px-32 lg:px-10 px-4 py-10"
+>
+  <div anim="fade-up" class="md:pr-10">
+    <h1 class="md:text-6xl sm:text-5xl text-3xl font-bold text-pri-dark">
+      Séminaires en Intra-entreprises
+    </h1>
+    <ul class="list-disc list-inside">
+      <li class="font-medium md:text-base text-sm text-pri-dark mt-2 md:w-96">
+        Nos actions intra entreprises sont des formations sur mesure qui
+        s’adoptent aux spécifications réelles de l’entreprise.
+      </li>
+      <li class="font-medium md:text-base text-sm text-pri-dark mt-2 md:w-96">
+        Faire l’effort de comprendre vos réalités opérationnelles, afin que nos
+        actions de formation servent vos priorités.
+      </li>
+      <li class="font-medium md:text-base text-sm text-pri-dark mt-2 md:w-96">
+        En effet, l’employeur peut faire bénéficier ses employés d’une formation
+        spécifique à son entreprise tout en décidant la date et le lieu de la
+        formation.
+      </li>
+      <li class="font-medium md:text-base text-sm text-pri-dark mt-2 md:w-96">
+        International BBA vous accompagne en agissant à la fois sur l’évolution
+        des compétences, sur les process et les pratiques de votre organisation.
+      </li>
+      <li class="font-medium md:text-base text-sm text-pri-dark mt-2 md:w-96">
+        Cette formation peut être dispensée, soit chez le client, soit dans nos
+        locaux à Monastir, soit dans un hôtel (selon la demande).
+      </li>
+      <li class="font-medium md:text-base text-sm text-pri-dark mt-2 md:w-96">
+        Les actions intra entreprises s’articulent autour de trois axes
+        essentiels :
+        <ul class="list-inside list-disc ml-2">
+          <li class="md:text-sm text-xs">
+            Préparation, diagnostic , constat de la situation
+          </li>
+          <li class="md:text-sm text-xs">Formation proprement dite</li>
+          <li class="md:text-sm text-xs">Evaluation de la formation acquise</li>
+        </ul>
+      </li>
+    </ul>
 
-{% block title %} International BBA {% endblock %}
-
-{% block styles %}
-
-  <link rel="stylesheet" href="{% static 'pages/service/service.css'%}">
-  <link rel="stylesheet" href="{% static 'pages/service/responsive_service.css'%}">
-{% endblock %}
-
-{% block content %}
-
-<section class="bg-sized-container intra-bg" >
-  <center>
-    <br>
-    <img class="small-image" src="{% static 'pages/service/skyline.svg' %}" >
-    <h1 class="strong white" > Les séminaires en intra-entreprises </h1>
-    <br>
-  </center>
-  <br><br>
-    <article class="container-5">
-      <center>
-        <div class="titled-paragraph">
-          <h3 class="medium2 light  colored upper"> Description </h3>
-          <p>Nos actions intra entreprises sont des formations sur mesure qui s’adoptent aux spécifications réelles de l’entreprise.<br><br>
-            Faire l’effort de comprendre vos réalités opérationnelles, afin que nos actions de formation servent vos priorités.<br><br>
-En effet, l’employeur peut faire bénéficier ses employés d’une formation spécifique à son entreprise tout en décidant la date et le lieu de la formation.<br><br>
-International BBA vous accompagne en agissant à la fois sur l’évolution des compétences, sur les process et les pratiques de votre organisation. <br><br>
-Cette formation peut être dispensée, soit chez le client, soit dans nos locaux à Monastir, soit dans un hôtel (selon la demande).<br><br>
-Les actions intra entreprises s’articulent autour de trois axes essentiels :
-<ul style="text-align:left" >
-  <li>Préparation, diagnostic , constat de la situation</li>
-  <li>Formation proprement dite</li>
-  <li>Evaluation de la formation acquise</li>
-
-</ul>
-
-</p>
-        </div>
-        <h3 class="medium light  colored upper">BESOIN D’UNe formation en intra ?</h3><br><br>
-        <a href="/contact?subject=Les séminaires en intra-entreprises" class="backgrounded-btn strong" >Contactez-nous</a>
-      </center>
-
-    </article>
-</section>
-
+    <a
+      href="{% url 'contact' %}?subject=Séminaires en Intra-entreprises"
+      class="inline-flex items-center font-semibold text-white bg-pri rounded-md sm:text-xl text-sm px-4 py-3 shadow-lg mt-10"
+      ><span>Contacter-nous</span>
+      <svg
+        class="ml-2 h-6"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </a>
+  </div>
+  <img
+    anim="fade-down"
+    class="sm:w-192 w-full py-5"
+    src="{% static 'images/image-3.jpg' %}"
+    alt="business solution"
+  />
+</div>
+{% endblock %} {% block scripts %}
+<script src="{% static 'pages/index.js' %}"></script>
 {% endblock %}

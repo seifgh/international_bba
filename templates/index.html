@@ -1,0 +1,392 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Home |
+International bba{% endblock %} {% block main %}
+
+<div
+  class="relative lg:grid block grid-cols-2 items-center xl:px-32 lg:px-10 px-4 py-5"
+>
+  <div anim="fade-left">
+    <h1 class="md:text-6xl sm:text-5xl text-3xl font-bold">
+      INTERNATIONAL BBA
+    </h1>
+    <h2 class="md:text-3xl sm:text-2xl text-xl font-semibold">
+      Better Business Advisory
+    </h2>
+    <p class="font-medium md:text-base text-sm mt-2 md:w-96">
+      Partenaire de votre réussite et succès Cabinet de formation continue et de
+      consulting agrée par l’Etat Tunisien sous le n° xx-xxx-xx.
+    </p>
+    <a
+      href="{% url 'presentation' %}"
+      class="inline-block font-semibold bg-pri text-white sm:text-xl text-sm rounded-md px-4 py-3 shadow-lg mt-10"
+      >Présentation</a
+    >
+    {% if catalogue %}
+    <a
+      target="_blank"
+      href="{{catalogue.catalogue_file.formated_file_url}}"
+      class="inline-flex items-center font-semibold text-pri sm:text-xl text-sm px-4 py-3 md:mt-10"
+    >
+      <span>Catalogue</span>
+      <svg
+        class="h-6 ml-2 transform rotate-45"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </a>
+    {% else %}
+    <a
+      href="{% url 'contact' %}"
+      class="inline-flex items-center font-semibold text-pri sm:text-xl text-sm px-4 py-3 md:mt-10"
+    >
+      <span>Contact</span>
+      <svg
+        class="h-6 ml-2 transform rotate-45"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </a>
+    {%endif%}
+  </div>
+  <img
+    anim="fade-right"
+    class="relative lg:h-full lg:w-auto w-full"
+    src="{% static 'images/image-1.png' %}"
+    alt="business solution"
+  />
+</div>
+
+<div anim="fade-up" class="md:mt-20 mt-10">
+  <h1 class="md:text-6xl sm:text-5xl text-3xl font-bold text-center">
+    Pourquoi nous choisir ?
+  </h1>
+
+  <div class="flex lg:flex-row flex-col items-center mt-20">
+    <div
+      class="inline-flex flex-col items-center w-64 p-8 border border-gray rounded-lg mb-8"
+    >
+      <img
+        class="w-20"
+        src="{% static 'images/clock.svg' %}"
+        alt="Apprentissage rapide"
+      />
+      <h3 class="text-md font-semibold my-4">Apprentissage rapide</h3>
+      <p class="text-sm font-normal text-center">
+        Qualification de nos consultants et formateurs avec une méthode
+        pédagogique innovant et unique.
+      </p>
+    </div>
+
+    <div
+      class="inline-flex flex-col items-center w-64 p-8 border border-pri rounded-lg shadow-lg lg:mx-12"
+    >
+      <img
+        class="w-24"
+        src="{% static 'images/money.svg' %}"
+        alt="Qualité-Prix"
+      />
+      <h3 class="text-md font-semibold my-4">Qualité-Prix</h3>
+      <p class="text-sm font-normal text-center">
+        Des prix bien étudiés avec la bonne qualité de nos services afin de
+        satisfaire nos clients.
+      </p>
+    </div>
+
+    <div
+      class="inline-flex flex-col items-center w-64 p-8 border border-gray rounded-lg lg:-mb-8 mt-8"
+    >
+      <img
+        class="w-20"
+        src="{% static 'images/chart.png' %}"
+        alt="Top domaines"
+      />
+      <h3 class="text-md font-semibold my-4">Top domaines</h3>
+      <p class="text-sm font-normal text-center">
+        Des formations qui ciblent les besoins réels des entreprises nationales
+        et internationales.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="md:mt-32 mt-10">
+  <h1 class="md:text-6xl sm:text-5xl text-4xl font-bold text-center">
+    Nos services
+  </h1>
+
+  <div class="block md:mt-20">
+    <div
+      class="relative lg:grid block grid-cols-2 items-center xl:px-32 lg:px-10 px-4 py-10"
+    >
+      <div class="md:pr-10">
+        <h1 class="md:text-6xl sm:text-5xl text-3xl font-bold">
+          Séminaires en Inter-entreprises
+        </h1>
+
+        <p class="font-medium md:text-base text-sm mt-2 md:w-96">
+          Nos actions inter entreprises regroupent du personnel d'entreprises de
+          secteurs d'activtés variés...
+        </p>
+        <a
+          href="/services"
+          class="inline-flex items-center font-semibold text-pri bg-pri-light rounded-md sm:text-xl text-sm px-4 py-3 mt-10"
+          ><span>Liser plus</span>
+          <svg
+            class="ml-2 h-6"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </a>
+      </div>
+      <img
+        class="sm:w-192 w-full py-5"
+        src="{% static 'images/image-2.jpg' %}"
+        alt="business solution"
+      />
+    </div>
+
+    <div
+      class="relative lg:grid block grid-cols-2 items-center xl:px-32 lg:px-10 px-4 py-10"
+    >
+      <div class="md:pr-10">
+        <h1 class="md:text-6xl sm:text-5xl text-3xl font-bold">
+          Séminaires en Intra-entreprises
+        </h1>
+
+        <p class="font-medium md:text-base text-sm mt-2 md:w-96">
+          Nos actions intra entreprises sont des formations sur mesure qui
+          s'adoptent aux spécificités de l'entreprise...
+        </p>
+        <a
+          href="/services"
+          class="inline-flex items-center font-semibold text-pri bg-pri-light rounded-md sm:text-xl text-sm px-4 py-3 mt-10"
+          ><span>Liser plus</span>
+          <svg
+            class="ml-2 h-6"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </a>
+      </div>
+      <img
+        class="sm:w-192 w-full py-5"
+        src="{% static 'images/image-3.jpg' %}"
+        alt="business solution"
+      />
+    </div>
+
+    <div
+      class="relative lg:grid block grid-cols-2 items-center xl:px-32 lg:px-10 px-4 py-10"
+    >
+      <div class="md:pr-10">
+        <h1 class="md:text-6xl sm:text-5xl text-3xl font-bold">
+          Conseil en formation
+        </h1>
+
+        <p class="font-medium md:text-base text-sm mt-2 md:w-96">
+          International BBA vous assiste essentiellement dans:
+          <br />
+          <br />
+          - Le diagnostic de vos besoins en formations
+          <br />
+          - La gestion de la formation par les comptétences...
+        </p>
+        <a
+          href="/services"
+          class="inline-flex items-center font-semibold text-pri bg-pri-light rounded-md sm:text-xl text-sm px-4 py-3 mt-10"
+          ><span>Liser plus</span>
+          <svg
+            class="ml-2 h-6"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </a>
+      </div>
+      <img
+        class="sm:w-192 w-full py-5"
+        src="{% static 'images/image-4.jpg' %}"
+        alt="business solution"
+      />
+    </div>
+  </div>
+</div>
+{% if testimonials %}
+<div class="md:mt-20">
+  <h1 class="md:text-6xl sm:text-5xl text-4xl font-bold text-center">
+    Nos témoignages
+  </h1>
+  <div class="block content-center mt-10 p-4">
+    {% for i in testimonials %}
+    <div
+      class="relative inline-block align-middle md:w-76 w-full md:p-8 p-4 md:mx-8 mb-4 rounded-lg shadow-lg"
+    >
+      <img
+        class="w-6 transform rotate-180"
+        src="{% static 'images/quote.png' %}"
+      />
+      <p class="md:text-sm text-xs font-medium mt-2">{{i.message}}</p>
+
+      <div class="flex items-center mt-8 pt-4 border-t border-gray">
+        <img
+          class="rounded-full w-12 h-12 object-cover shadow"
+          src="{{i.formated_image}}"
+        />
+        <div class="block ml-5">
+          <h3 class="block text-xs font-semibold">{{i.full_name}}</h3>
+          <small class="block text-xs font-medium">{{i.profession}}</small>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %} {% if soon_trainings %}
+<div class="md:mt-20 mt-10 flex flex-col items-center p-4">
+  <h1 class="md:text-6xl sm:text-5xl text-4xl font-bold text-center">
+    Prochaines formations
+  </h1>
+  <div class="grid xl:grid-cols-2 gap-12 my-8">
+    {% for i in soon_trainings %}
+    <div class="relative flex sm:flex-row flex-col sm:items-center items-start">
+      <div
+        class="relative sm:w-40 sm:h-40 h-64 w-64 sm:-mr-8 sm:-mb-0 -mb-8 sm:px-0 px-4 z-10"
+      >
+        <img
+          class="w-full h-full object-cover bg-gray-light rounded-lg border border-gray"
+          src="{{i.formated_image}}"
+          alt="{{i.title}}"
+        />
+        {% with formated_date=i.formated_date.date %}
+        <div
+          title='Du {{formated_date.start_date|date:"d/m/y"}} à  {{formated_date.end_date|date:"d/m/y"}}'
+          class="absolute top-0 ml-2 mt-2 z-10 shadow-lg flex items-center text-sm font-semibold bg-white text-pri border-full py-2 px-4 rounded-lg"
+        >
+          {{formated_date.start_date|date:"d/m/y"}}
+        </div>
+        {% endwith %}
+      </div>
+      <div
+        class="block sm:w-76 w-full bg-white rounded-lg shadow-lg border border-gray p-4 sm:pt-4 pt-10 sm:pl-12"
+      >
+        <h3 class="block text-sm font-semibold mb-2">{{i.title}}</h3>
+        <p class="md:text-sm text-xs font-medium mb-4">
+          {{i.formated_short_description}}
+        </p>
+        <div class="block">
+          <a
+            href="{% url 'training-registration' i.slug %}"
+            class="inline-block font-semibold bg-pri text-white sm:text-md text-xs rounded-md px-3 py-2 shadow-lg"
+          >
+            Inscription
+          </a>
+          <a
+            href="{% url 'training' i.slug %}"
+            class="inline-flex items-center font-semibold text-pri sm:text-md text-xs px-3 py-2 ml-1 hover:bg-pri-light transform focus:scale-95 rounded-md"
+          >
+            <span>Plus</span>
+            <svg
+              class="md:h-5 h-4 ml-1"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <a
+    href="{% url 'trainings' %}"
+    class="inline-flex w-32 items-center justify-center w-auto font-semibold bg-pri text-white sm:text-xl text-sm rounded-md px-4 py-3 shadow-lg mb-8 mt-4"
+    ><span>Voir tous</span>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      class="ml-2 h-6"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+        clip-rule="evenodd"
+      ></path></svg
+  ></a>
+</div>
+{% if articles %}
+<div class="my-10">
+  <h1 class="md:text-6xl sm:text-5xl text-4xl font-bold text-center">
+    Actualités
+  </h1>
+  <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 p-4 gap-12 my-10">
+    {% for i in articles %}
+    <a
+      href="{% url 'article' i.slug %}"
+      class="realtive inline-block align-top w-64 rounded-lg overflow-hidden m-4 shadow-md"
+    >
+      <div class="relative w-64 h-64">
+        <img
+          class="w-full h-full object-cover"
+          src="{{i.formated_image}}"
+          alt="{{i.title}}"
+        />
+        <div
+          title='Publié: {{i.creation_date|date:"M d, Y"}}'
+          class="absolute top-0 ml-2 mt-2 z-10 shadow-lg flex items-center text-sm font-semibold bg-white text-pri border-full py-2 px-4 rounded-lg"
+        >
+          New
+        </div>
+      </div>
+
+      <div class="p-4">
+        <h2 class="font-semibold text-sm truncate" title="{{i.title}}">
+          {{i.title}}
+        </h2>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endif %} {% endif %} {% endblock %} {% block scripts %}
+<script src="{% static 'pages/index.js' %}"></script>
+{% endblock %}
